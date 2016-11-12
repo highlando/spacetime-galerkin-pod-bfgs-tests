@@ -3,6 +3,8 @@ space-time Galerkin POD
 
 Code and hardware documentation of the numerical tests reported in our preprint *Space-time Galerkin POD with application in optimal control of semi-linear parabolic partial differential equations*.
 
+[![DOI](https://zenodo.org/badge/73575460.svg)](https://zenodo.org/badge/latestdoi/73575460)
+
 ## Space-time Galerkin POD (Python)
 
 Implementation of space-time generalized POD and space-time Galerkin for solving Burgers' equation.
