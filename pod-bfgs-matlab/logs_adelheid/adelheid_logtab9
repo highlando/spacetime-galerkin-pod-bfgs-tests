@@ -1,0 +1,77 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2012 The MathWorks, Inc.
+                    R2012b (8.0.0.783) 64-bit (glnxa64)
+                              August 22, 2012
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> >> [Warning: This functionality is no longer supported under the -nojvm startup
+option. For more information, see "Changes to -nojvm Startup Option" in the
+MATLAB Release Notes. To view the release note in your system browser, run
+web('http://www.mathworks.com/access/helpdesk/help/techdoc/rn/bropbi9-1.html#brubkzc-1',
+'-browser')] 
+[> In clf at 29] 
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> POD red order = 6
+$0.035549$
+$0.036348$
+$45$
+\texttt{0.20206}
+----------------------------------------------
+POD red order = 9
+$0.030617$
+$0.031829$
+$62$
+\texttt{0.4079}
+----------------------------------------------
+POD red order = 12
+$0.021608$
+$0.024038$
+$93$
+\texttt{0.7973}
+----------------------------------------------
+POD red order = 18
+$0.01308$
+$0.017831$
+$134$
+\texttt{1.7754}
+----------------------------------------------
+POD red order = 24
+$0.013088$
+$0.017511$
+$223$
+\texttt{3.8146}
+----------------------------------------------
+>> >> >> >> >> >> >> POD DEIM red order = 6
+$0.035269$
+$0.035564$
+$30$
+\texttt{0.13109}
+----------------------------------------------
+POD DEIM red order = 9
+$0.030466$
+$0.031047$
+$47$
+\texttt{0.28252}
+----------------------------------------------
+POD DEIM red order = 12
+$0.022347$
+$0.023439$
+$77$
+\texttt{0.59788}
+----------------------------------------------
+POD DEIM red order = 18
+$0.015684$
+$0.018243$
+$117$
+\texttt{1.4351}
+----------------------------------------------
+POD DEIM red order = 24
+$0.01034$
+$0.015337$
+$168$
+\texttt{2.8081}
+----------------------------------------------
+>> >> 

@@ -1,0 +1,59 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2012 The MathWorks, Inc.
+                    R2012b (8.0.0.783) 64-bit (glnxa64)
+                              August 22, 2012
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> >> [Warning: This functionality is no longer supported under the -nojvm startup
+option. For more information, see "Changes to -nojvm Startup Option" in the
+MATLAB Release Notes. To view the release note in your system browser, run
+web('http://www.mathworks.com/access/helpdesk/help/techdoc/rn/bropbi9-1.html#brubkzc-1',
+'-browser')] 
+[> In clf at 29] 
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> q = 18, nt = 6
+$0.021689$
+$0.023801$
+$70$
+$0.60733$
+----------------------------------------------
+q = 17, nt = 7
+$0.021625$
+$0.023638$
+$72$
+$0.70052$
+----------------------------------------------
+q = 16, nt = 8
+$0.020931$
+$0.023597$
+$85$
+$0.89791$
+----------------------------------------------
+q = 14, nt = 10
+$0.021756$
+$0.023703$
+$84$
+$1.0745$
+----------------------------------------------
+q = 12, nt = 12
+$0.021608$
+$0.024038$
+$93$
+$1.3153$
+----------------------------------------------
+q = 10, nt = 14
+$0.020524$
+$0.023573$
+$95$
+$1.4294$
+----------------------------------------------
+q = 8, nt = 16
+$0.018404$
+$0.02354$
+$111$
+$1.7984$
+----------------------------------------------
+>> 

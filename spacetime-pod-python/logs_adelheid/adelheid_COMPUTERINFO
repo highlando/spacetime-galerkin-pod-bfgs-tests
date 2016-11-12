@@ -1,0 +1,114 @@
+
+RELEASE INFO
+Description:	Ubuntu 14.04.5 LTS
+Release:	14.04
+Codename:	trusty
+
+KERNEL INFO
+operating system: GNU/Linux
+kernel name: Linux
+kernel release: 3.13.0-93-generic
+kernel version: #140-Ubuntu SMP Mon Jul 18 21:21:05 UTC 2016
+plattfrom type: x86_64 (64Bit)
+
+PROCESSOR INFO
+CPU type: Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz
+number of physical CPUs: 2
+number of cores (virtual): 16
+Processor 1
+    number of physical cores: 
+    cache size : 20480 KB (only highest level)
+Processor 2
+    number of physical cores: 
+    cache size : 20480 KB (only highest level)
+total number of physical cores: 0
+
+MEMORY INFO
+RAM installed: 32.900.116 kB
+SWAP installed: 33.506.300 kB
+
+MACHINE TOPOLOGY
+Machine (31GB)
+  NUMANode L#0 (P#0 16GB)
+    Socket L#0 + L3 L#0 (20MB)
+      L2 L#0 (256KB) + L1d L#0 (32KB) + L1i L#0 (32KB) + Core L#0 + PU L#0 (P#0)
+      L2 L#1 (256KB) + L1d L#1 (32KB) + L1i L#1 (32KB) + Core L#1 + PU L#1 (P#2)
+      L2 L#2 (256KB) + L1d L#2 (32KB) + L1i L#2 (32KB) + Core L#2 + PU L#2 (P#4)
+      L2 L#3 (256KB) + L1d L#3 (32KB) + L1i L#3 (32KB) + Core L#3 + PU L#3 (P#6)
+      L2 L#4 (256KB) + L1d L#4 (32KB) + L1i L#4 (32KB) + Core L#4 + PU L#4 (P#8)
+      L2 L#5 (256KB) + L1d L#5 (32KB) + L1i L#5 (32KB) + Core L#5 + PU L#5 (P#10)
+      L2 L#6 (256KB) + L1d L#6 (32KB) + L1i L#6 (32KB) + Core L#6 + PU L#6 (P#12)
+      L2 L#7 (256KB) + L1d L#7 (32KB) + L1i L#7 (32KB) + Core L#7 + PU L#7 (P#14)
+    HostBridge L#0
+      PCIBridge
+        PCI 14e4:165f
+          Net L#0 "eth2"
+        PCI 14e4:165f
+          Net L#1 "eth3"
+      PCIBridge
+        PCI 14e4:165f
+          Net L#2 "eth0"
+        PCI 14e4:165f
+          Net L#3 "eth1"
+      PCIBridge
+        PCI 1000:005b
+          Block L#4 "sda"
+      PCIBridge
+        PCI 10de:1094
+          GPU L#5 "card0"
+      PCIBridge
+        PCIBridge
+          PCIBridge
+            PCIBridge
+              PCI 102b:0534
+      PCI 8086:1d02
+        Block L#6 "sr0"
+  NUMANode L#1 (P#1 16GB)
+    Socket L#1 + L3 L#1 (20MB)
+      L2 L#8 (256KB) + L1d L#8 (32KB) + L1i L#8 (32KB) + Core L#8 + PU L#8 (P#1)
+      L2 L#9 (256KB) + L1d L#9 (32KB) + L1i L#9 (32KB) + Core L#9 + PU L#9 (P#3)
+      L2 L#10 (256KB) + L1d L#10 (32KB) + L1i L#10 (32KB) + Core L#10 + PU L#10 (P#5)
+      L2 L#11 (256KB) + L1d L#11 (32KB) + L1i L#11 (32KB) + Core L#11 + PU L#11 (P#7)
+      L2 L#12 (256KB) + L1d L#12 (32KB) + L1i L#12 (32KB) + Core L#12 + PU L#12 (P#9)
+      L2 L#13 (256KB) + L1d L#13 (32KB) + L1i L#13 (32KB) + Core L#13 + PU L#13 (P#11)
+      L2 L#14 (256KB) + L1d L#14 (32KB) + L1i L#14 (32KB) + Core L#14 + PU L#14 (P#13)
+      L2 L#15 (256KB) + L1d L#15 (32KB) + L1i L#15 (32KB) + Core L#15 + PU L#15 (P#15)
+    HostBridge L#9
+      PCIBridge
+        PCI 10de:1094
+          GPU L#7 "card1"
+
+
+default MATLAB version
+8.0.0.783 (R2012b)
+
+[?1l>default Octave version
+GNU Octave, version 3.8.1
+
+default Python version
+Python 2.7.6
+
+Python 2 version
+Python 2.7.6
+
+Python 3 version
+Python 3.4.3
+
+Version of the GNU Compiler Collection
+gcc\g++\gfortran (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4
+
+Version of the GNU C Library
+libc: 2.19
+
+default BLAS shared object version
+Source: flexiblas Version: 1.3.0
+
+default LAPACK shared object version
+Source: lapack Version: 3.5.0-2ubuntu1
+
+default NumPy version
+1:1.8.2-0ubuntu0.1
+
+default SciPy version
+0.13.3-1build1
+
