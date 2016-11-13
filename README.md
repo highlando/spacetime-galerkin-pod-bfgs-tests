@@ -7,7 +7,7 @@ Code and hardware documentation of the numerical tests reported in our preprint 
 
 ## Space-time Galerkin POD (Python)
 
-Implementation of space-time generalized POD and space-time Galerkin for solving Burgers' equation.
+Implementation of space-time generalized POD and space-time Galerkin for solving Burgers' equation. This is a snapshot of the repo [spacetime-genpod-burgers](https://gitlab.mpi-magdeburg.mpg.de/heiland/spacetime-genpod-burgers) that is under continuous development.
 
 ### Setup
 Change directory to `spacetime-pod-python/`.
