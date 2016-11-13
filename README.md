@@ -35,6 +35,7 @@ Change directory to `pod-bfgs-matlab/`. To rerun the numerical tests, run `drive
 
 ### Dependencies
  * Matlab (v 8.0.0.783 (R2012b))
+ * Matlab (v 9.1.0.441655 (R2016b))
 
 ## Hardware documentation
 See `logs_editha` for the *logfiles* of the numerical tests and the hardware specifications.
