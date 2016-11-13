@@ -34,8 +34,7 @@ Implementation of classical POD for the space reduction and BFGS for the optimiz
 Change directory to `pod-bfgs-matlab/`. To rerun the numerical tests, run `driver_tab9.m`, `driver_tab10.m`, or `driver_tab11.m`.
 
 ### Dependencies
- * Matlab (v 8.0.0.783 (R2012b))
- * Matlab (v 9.1.0.441655 (R2016b))
+ * Matlab (v 8.0.0.783 (R2012b); 9.1.0.441655 (R2016b))
 
 ## Hardware documentation
-See `logs_editha` for the *logfiles* of the numerical tests and the hardware specifications.
+See `logs_adelheid` for the *logfiles* of the numerical tests and the hardware specifications.
