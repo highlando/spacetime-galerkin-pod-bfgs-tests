@@ -15,12 +15,13 @@ Jrom       = zeros(length(qhat),n_exp);
 bfgs_iters = zeros(length(qhat),n_exp);
 trom       = zeros(length(qhat),n_exp);
 
-%% Table 10
+%% Table 10 -- DEIM
 for i=1:n_exp
-    [erom(:,i), Jrom(:,i), bfgs_iters(:,i), trom(:,i)] = exper_var_space_time(qhat, nt, Jtarget, 0);
+    [erom(:,i), Jrom(:,i), bfgs_iters(:,i), trom(:,i)] = exper_var_space_time(qhat, nt, Jtarget, 1);
 end
 
 % pick best run
+disp(['---------------POD-DEIM-----------------'])
 for i=1:length(qhat)
    [trom_best,ind] = min(trom(i,:));
     
