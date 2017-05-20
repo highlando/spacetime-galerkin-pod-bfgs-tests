@@ -25,7 +25,7 @@ plotplease = False
 t0, tE = 0., 1.
 timebasfuntype = 'pl'
 tmesh = np.linspace(t0, tE, Nts)
-iniv = np.r_[np.zeros((np.floor(Nq*.5), 1)), np.ones((np.ceil(Nq*.5)-1, 1))]
+iniv = np.r_[np.zeros((np.int(np.floor(Nq*.5)), 1)), np.ones((np.int(np.ceil(Nq*.5)-1), 1))]
 
 nu = 3.e-3
 nul = [nu]

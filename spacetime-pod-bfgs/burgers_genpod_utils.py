@@ -65,7 +65,7 @@ def burger_fwd_gpresidual(ms=None, ay=None, dms=None, rhs=None,
 
 def get_burger_tensor(Uky=None, Uks=None, datastr=None, V=None, diribc=None,
                       bwd=None, Ukyconv=None, Uksconv=None,
-                      ininds=None, sdim=None, tmesh=None,
+                      ininds=None, sdim=None, tmesh=None, spaceonly=False,
                       debug=False, **kwargs):
     # loading/assembling the components of the tensor
     try:
@@ -77,6 +77,8 @@ def get_burger_tensor(Uky=None, Uks=None, datastr=None, V=None, diribc=None,
             burgernonldict = json.load(fjs)
             fjs.close()
             uvvdxl = nonlty_listtoarray(burgernonldict['uvvdxl'])
+            if spaceonly:
+                return uvvdxl, None
             htittl = nonlty_listtoarray(burgernonldict['htittl'])
             print 'Loaded the coefficients for the nonlinearity from {0}'.\
                 format(datastr)
@@ -88,6 +90,8 @@ def get_burger_tensor(Uky=None, Uks=None, datastr=None, V=None, diribc=None,
                                                     bwd=bwd,
                                                     ininds=ininds,
                                                     diribc=diribc)
+            if spaceonly:
+                return uvvdxl, None
             print '... in time'
             htittl = get_burgertensor_timecomp(podmat=Uks, sdim=sdim,
                                                Uksconv=Uksconv,
@@ -418,10 +422,12 @@ def eva_burger_quadratic(tvvec=None, htittl=None, uvvdxl=None, iniv=None,
         return np.array(tvtvxl).reshape((len(htittl)-starttime)*len(uvvdxl), 1)
 
 
-def eva_burger_spacecomp(uvvdxl=None, svec=None):
+def eva_burger_spacecomp(uvvdxl=None, svec=None, convvec=None):
+    if convvec is None:
+        convvec = svec
     evall = []
     for uvvdx in uvvdxl:
-        evall.append(np.dot(svec.T, uvvdx.dot(svec)))
+        evall.append(np.dot(convvec.T, uvvdx.dot(svec)))
     return np.array(evall).reshape((len(uvvdxl), 1))
 
 

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-git pull
-FILETOEDIT=run_burger_timspapod.py
-echo $FILETOEDIT
-gvim --remote-silent $FILETOEDIT 

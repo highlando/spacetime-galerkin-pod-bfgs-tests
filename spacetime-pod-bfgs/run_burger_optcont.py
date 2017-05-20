@@ -14,8 +14,11 @@ import burgers_genpod_utils as bgu
 import burgers_optcont_utils as bou
 import gen_pod_utils as gpu
 import spacetime_pod_utils as spu
+import genpod_opti_utils as gou
 
 from plot_utils import plotmat
+
+from heartshape import get_spcheartfun
 
 import logging
 import logging.config
@@ -85,7 +88,7 @@ def spacetimesolve(func=None, funcjaco=None, inival=None, timerecord=False,
             sol = fsolve(func, x0=inival.flatten(), fprime=funcjaco)
 
     if timerecord:
-        return sol, tfd['elt']
+        return sol, tfd
     else:
         return sol
 
@@ -143,7 +146,7 @@ def testit(Nq=None, Nts=None,
            spacebasscheme=None, nu=None, alpha=None,
            genpodstate=False, genpodadj=False, genpodcl=False,
            plotplease=False, tikzplease=False, tikzprefikz='',
-           adjplotdict=None,
+           adjplotdict=None, target='inival',
            onlytimings=False, **kwargs):
 
     t0, tE = dmndct['t0'], dmndct['tE']
@@ -163,6 +166,18 @@ def testit(Nq=None, Nts=None,
         backcheck_tkzf = tikzprefikz + 'backcheck'
     tmesh = np.linspace(t0, tE, Nts)
     snapshottmesh = np.linspace(t0, tE, Ns)
+
+    if target == 'inival':
+        def vstar(t):
+            return iniv.flatten()
+
+    elif target == 'heart' or 'invheart':
+        invertt = True if target == 'invheart' else False
+        myheartfun = get_spcheartfun(NY=Nq-1, invertt=invertt)
+
+        def vstar(t):
+            return myheartfun(t).flatten()
+
     # ### define the model
     x0, xE = dmndct['x0'], dmndct['xE']
     (My, A, rhs, nfunc, femp) = dbs.\
@@ -178,13 +193,15 @@ def testit(Nq=None, Nts=None,
     elif inivtype == 'ramp':
         iniv = np.r_[np.linspace(0, 1, ((Nq-1)/2)).reshape(((Nq-1)/2, 1)),
                      np.zeros(((Nq)/2, 1))]
+    elif inivtype == 'zero':
+        iniv = np.zeros((Nq-1, 1))
     # ### compute the forward snapshots
 
     def fwdrhs(t):
         return rhs
     simudict = dict(iniv=iniv, A=A, M=My, nfunc=nfunc, rhs=fwdrhs, tmesh=tmesh)
     with dou.Timer('fwd'):
-        datastr = 'data/fwdsol_iniv' + inivtype + \
+        datastr = 'data/fwdsol_iniv' + inivtype + '_target_' + target +\
             'Nq{0}Nts{1}nu{2}'.format(Nq, Nts, nu)
         vv = dou.load_or_comp(filestr=datastr, comprtn=gpu.time_int_semil,
                               arraytype='dense', comprtnargs=simudict,
@@ -196,29 +213,27 @@ def testit(Nq=None, Nts=None,
     (xms, Ms) = gpu.get_genmeasuremat(sol=vv.T, tmesh=tmesh, sdim=Ns)
     # ### compute the backward snapshots
     if genpodadj or genpodcl:
-        vfun = interp1d(tmesh, vv, axis=0)
+        _vfun = interp1d(tmesh, vv, axis=0)  # , fill_value='extrapolate')
+
+        def vfun(t):
+            if t < tmesh[0]:
+                return _vfun(tmesh[0])
+            elif t > tmesh[-1]:
+                return _vfun(tmesh[-1])
+            else:
+                return _vfun(t)
+
         vdxoperator, fnctnl = dbs.\
             burgers_bwd_spacedisc(V=femp['V'], ininds=femp['ininds'],
                                   diribc=femp['diribc'])
         te = tmesh[-1]
 
-        def vfun_ext(t):
-            if t < t0:  # the integrator may require values outside [t0, tE]
-                # print 'omg I am out of range'
-                return vfun(t0)
-            else:
-                return vfun(t)
-
-        def vstar(t):
-            return iniv.flatten()
-
         def burger_bwd_rhs(t):
             # TODO: -----------------------------> here we need vstar
-            return (-fnctnl(vfun_ext(te-t)).flatten()
-                    + fnctnl(vstar(t)).flatten())
+            return -fnctnl(vfun(te-t)).flatten()+fnctnl(vstar(te-t)).flatten()
 
         def burger_bwd_nonl(lvec, t):
-            vdx = vdxoperator(vfun_ext(te-t))
+            vdx = vdxoperator(vfun(te-t))
             return -(vdx*lvec).flatten()
 
         termiL = np.zeros((Nq-1, 1))
@@ -226,7 +241,7 @@ def testit(Nq=None, Nts=None,
                             rhs=burger_bwd_rhs, tmesh=tmesh)
 
         with dou.Timer('bwd'):
-            datastr = 'data/bwdsol_iniv' + inivtype + \
+            datastr = 'data/bwdsol_iniv' + inivtype + '_target' + target +\
                 'Nq{0}Nts{1}nu{2}'.format(Nq, Nts, nu)
             bwdll = dou.\
                 load_or_comp(filestr=datastr, comprtn=gpu.time_int_semil,
@@ -260,6 +275,7 @@ def testit(Nq=None, Nts=None,
 
     print 'assembling the reduced tensor...'
     datastr = 'data/fwd_iniv' + inivtype + '_tnsr_' + spacebasscheme + \
+        '_target_' + target +\
         '_Nts{5}Nq{0}Ns{1}hq{2}hs{3}nu{4}'.format(Nq, Ns, hq, hs, nu, Nts)
     uvvdxl, htittl = bgu.\
         get_burger_tensor(Uky=lyitUVy, Uks=lsitUVs, sdim=Ns, bwd=True,
@@ -286,6 +302,7 @@ def testit(Nq=None, Nts=None,
 
         print 'assembling the bwd reduced tensor...'
         datastr = 'data/bwdtnsr_iniv' + inivtype + '_' + spacebasscheme +\
+            '_target_' + target +\
             '_Nts{5}Nq{0}Ns{1}hq{2}hs{3}nu{4}'.format(Nq, Ns, hq, hs, nu, Nts)
         Luvvdxl, Lhtittl = bgu.\
             get_burger_tensor(Uky=lyitULy, bwd=True, Uks=lsitULs,
@@ -293,7 +310,9 @@ def testit(Nq=None, Nts=None,
                               tmesh=tmesh, datastr=datastr, debug=debug,
                               **femp)
 
-        tgtst = np.tile(iniv, Ns)
+        tgtst = gou.xvectoX(gou.functovec(vstar, snapshottmesh),
+                            ns=Ns, nq=Nq-1)
+
         htgst = np.dot(lyUVy.T, np.dot(tgtst, lsUVs))
         htgstvec = Xtoxvec(htgst)
 
@@ -346,15 +365,32 @@ def testit(Nq=None, Nts=None,
 
     if genpodcl:
         print 'solving the optimization problem (fwdbwd)...'
-        optiniV = np.tile(hiniv.T, hs-1).T
-        optiniL = np.zeros((hq*(hs-1), 1))
+        fwdbwdini = True
+        if fwdbwdini:
+            hcurst = np.dot(lyUVy.T, np.dot(xms, lsitUVs))
+            hcurstvec = gou.Xtoxvec(hcurst)
+            # plotmat((np.dot(lyitUVy,
+            #                 np.dot(gou.xvectoX(hcurstvec, nq=hq, ns=hs),
+            #                        lsitUVs.T))).T, fignum=9999)
+            optiniL = np.zeros((hq*(hs-1), 1))
+            hcuradj = np.dot(lyULy.T, np.dot(Lms, lsitULs))
+            hcuradjvec = gou.Xtoxvec(hcuradj)
+            # plotmat((np.dot(lyitULy,
+            #                 np.dot(gou.xvectoX(hcuradjvec, nq=hq, ns=hs),
+            #                        lsitULs.T))).T, fignum=9998)
+            optiniV = hcurstvec[hq:, :]
+            optiniV = hcuradjvec[:-hq, :]
+
+        else:
+            optiniV = np.tile(hiniv.T, hs-1).T
+            optiniL = np.zeros((hq*(hs-1), 1))
         optiniVL = np.vstack([optiniV, optiniL])
-        sol, optconttime = \
+        sol, timingsdict = \
             spacetimesolve(func=clres, funcjaco=clresprime, inival=optiniVL,
                            message='optcont problem - analytical jacobian',
                            timerecord=True)
         if onlytimings:
-            return optconttime
+            return timingsdict
 
         optiV = np.r_[hiniv.flatten(), sol[:hq*(hs-1)]]
         optiV = optiV.reshape((hs, hq))
@@ -368,6 +404,8 @@ def testit(Nq=None, Nts=None,
                     tikzfile=redoptiv_tkzf, fignum=123, **dmndct)
             plotmat(1./alpha*fulloptiL, tikzfile=redoptlambda_tkzf,
                     fignum=1241, **dmndct)
+            plotmat(fulloptiL, tikzfile=redoptlambda_tkzf,
+                    fignum=12411, **dmndct)
 
         # ### SECTION: fwd problem with reduced costates
         redmodu = 1./alpha*fulloptiL
@@ -387,21 +425,22 @@ def testit(Nq=None, Nts=None,
             vv = gpu.time_int_semil(**simudict)
             if plotplease:
                 plotmat(vv, fignum=12341, tikzfile=backcheck_tkzf, **dmndct)
-                vvd = vv - np.tile(iniv.T, (Ns, 1))
+                vvd = vv - tgtst.T
 
                 plotmat(vvd, fignum=12342, **dmndct)
 
-                plotmat(np.tile(iniv.T, (Ns, 1)), fignum=12343,
+                plotmat(tgtst.T, fignum=12343,
                         tikzfile=tikzprefikz+'zstar', **dmndct)
 
         valdict = eva_costfun(vopt=Xtoxvec(vv.T), uopt=Xtoxvec(redmodu),
                               qmat=My, rmat=alpha*My, ms=Ms,
                               vstar=vstar, tmesh=snapshottmesh)
+        valdict.update(dict(unormsqrd=2*1./alpha*valdict['uterm']))
 
         logger.info('Value of the cost functional: {0}'.
                     format(valdict['value']))
 
-        return valdict, optconttime
+        return valdict, timingsdict
     else:
         return None, None
 
@@ -409,19 +448,23 @@ def testit(Nq=None, Nts=None,
 if __name__ == '__main__':
     # ### define the problem
     testitdict = \
-        dict(Nq=150,  # dimension of the spatial discretization
-             Nts=150,  # number of time sampling points
+        dict(Nq=220,  # dimension of the spatial discretization
+             Nts=250,  # number of time sampling points
              # t0=0., tE=1.,
              # x0=0., xE=1.,
-             inivtype='step',  # 'ramp', 'smooth'
+             # inivtype='step',  # 'step',  # 'ramp', 'smooth'
+             inivtype='step',  # 'zero', 'step',  # 'ramp', 'smooth'
              dmndct=dict(tE=1., t0=0., x0=0., xE=1.),  # for the plots
-             Ns=70,  # Number of measurement functions=Num of snapshots
+             Ns=120,  # Number of measurement functions=Num of snapshots
              hq=12,  # number of space modes
              hs=12,  # number of time modes
-             spacebasscheme='combined',  # 'onlyL' 'VandL' 'combined'
+             target='inival',  # 'inival', 'heart'
+             # spacebasschemes: 'onlyV', 'onlyL', 'VandL', 'combined'
+             # genpodstate=True, spacebasscheme='onlyV',
+             genpodcl=True, genpodadj=True, spacebasscheme='combined',
              plotplease=True, tikzplease=False,
-             nu=5e-3,
-             alpha=1e-3,
-             genpodcl=True)
+             nu=5e-3, alpha=1e-3)
 
     value, timerinfo = testit(**testitdict)
+    print 'Back check: value of costfunction: {0}'.format(value['value'])
+    print 'Back check: value of vterm: {0}'.format(value['vterm'])

@@ -5,6 +5,7 @@ try:
     from sksparse.cholmod import cholesky
 except ImportError:
     print 'Cannot import sksparse -- hope we can do without'
+    print 'Caution: solving with the factor F uses dense routines'
 
 import dolfin_navier_scipy.data_output_utils as dou
 
@@ -41,12 +42,10 @@ class SparseFactorMassmat:
         self.Ft = (self.F).T
 
     def solve_Ft(self, rhs):
-        print 'we solve dense F.T'
         litptrhs = spla.solve(self.Ft.todense(), rhs)
         return litptrhs
 
     def solve_F(self, rhs):
-        print 'we solve dense F'
         litptrhs = spla.solve(self.F.todense(), rhs)
         return litptrhs
 

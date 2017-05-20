@@ -3,12 +3,16 @@ import numpy as np
 
 
 def plotmat(sol, t0=0.0, tE=1.0, x0=0.0, xE=1.0, vmin=None, vmax=None,
-            fignum=None, tikzfile=None, vertflip=False, cmapname='viridis',
-            **kwargs):
+            fignum=None, tikzfile=None, vertflip=False, horiflip=False,
+            cmapname='viridis', plotplease=True, **kwargs):
+    if not plotplease:
+        return
     if fignum is None:
         fignum = 111
     if vertflip:
         sol = np.flipud(sol)  # flip the to make it forward time
+    if horiflip:
+        sol = np.fliplr(sol)  # flip the space
 
     plt.figure(fignum)
     try:

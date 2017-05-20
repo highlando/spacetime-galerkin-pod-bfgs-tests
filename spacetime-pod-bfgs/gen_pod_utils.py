@@ -12,17 +12,18 @@ except ImportError:
 
 __all__ = ['uBasPLF',
            'get_genmeasuremat',
-           'HaarWavelet',
-           'time_int',
-           'get_podred_model',
-           'get_spaprjredmod',
            'get_genpodmats',
            'get_dms',
+           'get_ksvvecs',
            'get_ms',
            'get_podbases',
+           'get_podred_model',
            'get_podbases_wrtmassmats',
            'get_podmats',
-           'get_ksvvecs',
+           'get_spaprjredmod',
+           'get_redmatfunc',
+           'HaarWavelet',
+           'time_int',
            'hatfuncs',
            'time_int_semil',
            'get_timspapar_podbas']
@@ -87,6 +88,7 @@ def get_timspapar_podbas(hs=None, hq=None, My=None, Ms=None, snapsl=None,
 
 
 def time_int_semil(tmesh=None, Nts=None, t0=None, tE=None, full_output=False,
+                   rtol=None, atol=None,
                    M=None, A=None, rhs=None, nfunc=None, iniv=None):
     """ wrapper for `scipy.odeint` for space discrete semi-linear PDEs
 
@@ -142,7 +144,13 @@ def time_int_semil(tmesh=None, Nts=None, t0=None, tE=None, full_output=False,
                 return np.dot(mki, rhs(t).flatten() - _mm_nonednssps(A, vvec)
                               - _nnfunc(vvec, t)).flatten()
 
-    vv = odeint(semintrhs, iniv.flatten(), tmesh, full_output=full_output)
+    tldct = {}
+    if rtol is not None:
+        tldct.update(dict(rtol=rtol))
+    if atol is not None:
+        tldct.update(dict(atol=atol))
+    vv = odeint(semintrhs, iniv.flatten(), tmesh,
+                full_output=full_output, **tldct)
 
     return vv
 
@@ -592,11 +600,19 @@ def get_podred_model(M=None, A=None, nonl=None, rhs=None, Uk=None,
     return Ak, Mk, nonl_red, rhs_red, y_red, Uk
 
 
+def get_redmatfunc(ULk=None, UVk=None, matfunc=None):
+    ''' setup a function `v -> ULk.T * matfunc(UVk*v) * ULk` '''
+
+    def redmatfunc(vvec):
+        return np.dot(lau.mm_dnssps(ULk.T, matfunc(np.dot(UVk, vvec))), ULk)
+    return redmatfunc
+
+
 def get_spaprjredmod(M=None, A=None, nonl=None, rhs=None, Uk=None, prjUk=None):
 
     if prjUk is not None:
         def projcoef(yfull):
-            return np.dot(prjUk.T, yfull)
+            return np.dot(prjUk.T, yfull).reshape((prjUk.shape[1], 1))
 
     def liftcoef(yhat):
         return np.dot(Uk, yhat)

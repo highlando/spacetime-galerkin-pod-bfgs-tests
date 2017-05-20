@@ -229,3 +229,7 @@ def krontimspaproduct(vone, vtwo=None, my=None, ms=None):
     if vtwo is None:
         vtwo = vone
     return np.dot(vone.T, sps.kron(ms, my)*vtwo)
+
+
+def krontimspamatvec(vvec, my=None, ms=None):
+    return sps.kron(ms, my)*vvec
