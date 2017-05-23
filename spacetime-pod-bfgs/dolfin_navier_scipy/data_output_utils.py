@@ -68,9 +68,8 @@ def load_json_dicts(StrToJs):
 
 def plot_prs_outp(str_to_json=None, tmeshkey='tmesh', sigkey='outsig',
                   outsig=None, tmesh=None, fignum=222, reference=None,
-                  compress=5):
+                  compress=5, tikzfile=None, tikzonly=False):
     import matplotlib.pyplot as plt
-    from matplotlib2tikz import save as tikz_save
 
     if str_to_json is not None:
         jsdict = load_json_dicts(str_to_json)
@@ -88,19 +87,27 @@ def plot_prs_outp(str_to_json=None, tmeshkey='tmesh', sigkey='outsig',
     ax1.plot(np.array(tmesh)[redina], np.array(outsig)[redina],
              color='r', linewidth=2.0)
 
-    tikz_save(str_to_json + '{0}'.format(fignum) + '.tikz',
-              figureheight='\\figureheight',
-              figurewidth='\\figurewidth'
-              )
-    print 'tikz saved to ' + str_to_json + '{0}'.format(fignum) + '.tikz'
-    fig.show()
+    if tikzfile is not None:
+        try:
+            from matplotlib2tikz import save as tikz_save
+            tikz_save(tikzfile + '.tikz',
+                      figureheight='\\figureheight',
+                      figurewidth='\\figurewidth'
+                      )
+            print 'tikz saved to ' + tikzfile + '.tikz'
+        except ImportError:
+            print 'cannot save to tikz -- no matplotlib2tikz found'
+    if tikzonly:
+        return
+    else:
+        fig.show()
+        return
 
 
 def plot_outp_sig(str_to_json=None, tmeshkey='tmesh', sigkey='outsig',
                   outsig=None, tmesh=None, fignum=222, reference=None,
                   compress=5):
     import matplotlib.pyplot as plt
-    from matplotlib2tikz import save as tikz_save
 
     if str_to_json is not None:
         jsdict = load_json_dicts(str_to_json)
@@ -121,11 +128,18 @@ def plot_outp_sig(str_to_json=None, tmeshkey='tmesh', sigkey='outsig',
     ax1.plot(np.array(tmesh)[redina], np.array(outsig)[redina, NY:],
              color='r', linewidth=2.0)
 
-    tikz_save(str_to_json + '{0}'.format(fignum) + '.tikz',
-              figureheight='\\figureheight',
-              figurewidth='\\figurewidth'
-              )
-    print 'tikz saved to ' + str_to_json + '{0}'.format(fignum) + '.tikz'
+    try:
+        from matplotlib2tikz import save as tikz_save
+        tikz_save(str_to_json + '{0}'.format(fignum) + '.tikz',
+                  figureheight='\\figureheight',
+                  figurewidth='\\figurewidth'
+                  )
+        print 'tikz saved to ' + str_to_json + '{0}'.format(fignum) + '.tikz'
+        haztikz = True
+    except ImportError:
+        haztikz = False
+        print 'cannot save to tikz -- no matplotlib2tikz found'
+
     fig.show()
 
     if reference is not None:
@@ -133,10 +147,11 @@ def plot_outp_sig(str_to_json=None, tmeshkey='tmesh', sigkey='outsig',
         ax1 = fig.add_subplot(111)
         ax1.plot(tmesh, np.array(outsig)-reference)
 
-        tikz_save(str_to_json + '{0}'.format(fignum) + '_difftoref.tikz',
-                  figureheight='\\figureheight',
-                  figurewidth='\\figurewidth'
-                  )
+        if haztikz:
+            tikz_save(str_to_json + '{0}'.format(fignum) + '_difftoref.tikz',
+                      figureheight='\\figureheight',
+                      figurewidth='\\figurewidth'
+                      )
         fig.show()
 
 
@@ -281,10 +296,11 @@ def logtofile(logstr):
 
 
 class Timer(object):
-    def __init__(self, name=None, logger=None, timerinfo={}):
+    def __init__(self, name=None, logger=None, timerinfo={}, verbose=True):
         self.name = name
         self.logger = logger
         self.timerinfo = timerinfo
+        self.verbose = verbose
 
     def __enter__(self):
         self.tstart = time.time()
@@ -295,6 +311,6 @@ class Timer(object):
         if self.logger is not None:
             self.logger.info('{0}: Elapsed time: {1}'.
                              format(self.name, elt))
-        else:
+        if self.verbose:
             print '[%s]' % self.name,
             print 'Elapsed: %s' % (elt)
