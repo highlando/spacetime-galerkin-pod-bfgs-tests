@@ -2,7 +2,7 @@ from bfgs_run_burger import bfgs_opti
 
 from numtest_setup_utils import checkit
 
-timingonly = False
+timingonly = True
 numbertimings = 5
 checkbwdtimings = False
 plotplease = False

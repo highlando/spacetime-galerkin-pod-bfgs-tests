@@ -5,8 +5,8 @@ from run_burger_optcont import testit
 
 from numtest_setup_utils import checkit
 
-target = 'heart'
 target = 'inival'
+target = 'heart'
 
 basnumbercheck = False
 spatimbascheck = False
@@ -16,12 +16,12 @@ alphacheck = False
 makeapic = True
 makeapic = False
 
-timingonly = True
 timingonly = False  # only timings for the optimization
+timingonly = True
 
 # ### make it come true
-# basnumbercheck = True
-# spatimbascheck = True
+basnumbercheck = True
+spatimbascheck = True
 viscocheck = True
 alphacheck = True
 

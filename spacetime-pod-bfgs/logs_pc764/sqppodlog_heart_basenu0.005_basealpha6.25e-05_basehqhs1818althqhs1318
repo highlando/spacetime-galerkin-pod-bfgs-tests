@@ -1,0 +1,1109 @@
+XXXXXXXXXX
+ log started at 2017-05-24 13:18:25.682623 
+XXXXXXXXXX
+could not load data/fwdsol_inivstep_targetheartNq220Nts250nu0.005 -- lets compute it
+saved data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 12.3983919621
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.0174021720886
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.114974975586
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0580379962921
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.015767
+         Iterations: 98
+         Function evaluations: 124
+         Gradient evaluations: 114
+[bfgs optimization] Elapsed: 24.6743578911
+evaluating the full cost function
+### we check gtol -- nu=0.005, alpha=6.25e-05, hqhs=18-18, tol=0.0001
+$0.0213$
+$0.0005$
+$0.0219$
+$24.6744$
+$1.77e-04$
+n function calls
+$124$
+n gradient calls
+$114$
+|u|**2
+$17.0733$
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000990152359009
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000827074050903
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0413320064545
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0406188964844
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.014071
+         Iterations: 99
+         Function evaluations: 131
+         Gradient evaluations: 120
+[bfgs optimization] Elapsed: 17.799519062
+evaluating the full cost function
+### we check gtol -- nu=0.005, alpha=6.25e-05, hqhs=13-18, tol=0.0001
+$0.0243$
+$0.0006$
+$0.0249$
+$17.7995$
+$1.77e-04$
+n function calls
+$131$
+n gradient calls
+$120$
+|u|**2
+$18.9687$
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000961065292358
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.00107502937317
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0414018630981
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0406601428986
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.014071
+         Iterations: 99
+         Function evaluations: 131
+         Gradient evaluations: 120
+[bfgs optimization] Elapsed: 18.1887130737
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000965118408203
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000837802886963
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0479381084442
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.04731798172
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.015881
+         Iterations: 91
+         Function evaluations: 137
+         Gradient evaluations: 130
+[bfgs optimization] Elapsed: 22.108371973
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000969886779785
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000834941864014
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0513079166412
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0506348609924
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.014567
+         Iterations: 97
+         Function evaluations: 145
+         Gradient evaluations: 139
+[bfgs optimization] Elapsed: 31.134059906
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.00096607208252
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000824928283691
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0612490177155
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0608239173889
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.022309
+         Iterations: 58
+         Function evaluations: 86
+         Gradient evaluations: 74
+[bfgs optimization] Elapsed: 14.0695748329
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000965118408203
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000833988189697
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0645840167999
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0640959739685
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.020009
+         Iterations: 71
+         Function evaluations: 121
+         Gradient evaluations: 113
+[bfgs optimization] Elapsed: 27.0154290199
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000952959060669
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.00119304656982
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0578601360321
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.05739402771
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.023503
+         Iterations: 54
+         Function evaluations: 84
+         Gradient evaluations: 72
+[bfgs optimization] Elapsed: 11.2662100792
+evaluating the full cost function
+### we check hqhs -- nu=0.005, alpha=6.25e-05, N=100, tol=0.0001
+$0.0243$ & $0.0261$ & $0.0236$ & $0.0282$ & $0.0259$ & $0.0294$
+$0.0006$ & $0.0004$ & $0.0005$ & $0.0003$ & $0.0004$ & $0.0003$
+$0.0249$ & $0.0265$ & $0.0242$ & $0.0285$ & $0.0263$ & $0.0297$
+$18.1887$ & $22.1084$ & $31.1341$ & $14.0696$ & $27.0154$ & $11.2662$
+$ 13$ & $ 18$ \\
+$ 15$ & $ 19$ \\
+$ 16$ & $ 20$ \\
+$ 19$ & $ 15$ \\
+$ 20$ & $ 16$ \\
+$ 18$ & $ 13$
+n function calls
+$131$ & $137$ & $145$ & $ 86$ & $121$ & $ 84$
+n gradient calls
+$120$ & $130$ & $139$ & $ 74$ & $113$ & $ 72$
+|u|**2
+$18.9687$ \\
+$13.8986$ \\
+$17.1298$ \\
+$9.2041$ \\
+$12.1644$ \\
+$9.0284$
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.00118398666382
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000938177108765
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.031928062439
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0311589241028
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.022780
+         Iterations: 52
+         Function evaluations: 94
+         Gradient evaluations: 84
+[bfgs optimization] Elapsed: 7.90178012848
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000977993011475
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000908851623535
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0383360385895
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0376319885254
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.021596
+         Iterations: 53
+         Function evaluations: 104
+         Gradient evaluations: 93
+[bfgs optimization] Elapsed: 10.4391579628
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000977039337158
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000955104827881
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0479819774628
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0472960472107
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.020040
+         Iterations: 58
+         Function evaluations: 82
+         Gradient evaluations: 70
+[bfgs optimization] Elapsed: 10.192305088
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000988006591797
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000910997390747
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0577249526978
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0572941303253
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.015767
+         Iterations: 98
+         Function evaluations: 124
+         Gradient evaluations: 114
+[bfgs optimization] Elapsed: 24.690333128
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000990152359009
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000864028930664
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0678868293762
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0675899982452
+solving the reduced optimization problem
+Warning: Maximum number of iterations has been exceeded.
+         Current function value: 0.015231
+         Iterations: 100
+         Function evaluations: 107
+         Gradient evaluations: 107
+[bfgs optimization] Elapsed: 79.7145187855
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000973224639893
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.00107288360596
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0822579860687
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0822379589081
+solving the reduced optimization problem
+Warning: Maximum number of iterations has been exceeded.
+         Current function value: 0.014708
+         Iterations: 100
+         Function evaluations: 104
+         Gradient evaluations: 104
+[bfgs optimization] Elapsed: 235.647335052
+evaluating the full cost function
+### we check hqhs -- nu=0.005, alpha=6.25e-05, N=100, tol=0.0001
+$0.0335$ & $0.0325$ & $0.0294$ & $0.0213$ & $0.0208$ & $0.0186$
+$0.0003$ & $0.0003$ & $0.0003$ & $0.0005$ & $0.0005$ & $0.0006$
+$0.0337$ & $0.0328$ & $0.0297$ & $0.0219$ & $0.0214$ & $0.0192$
+$7.9018$ & $10.4392$ & $10.1923$ & $24.6903$ & $79.7145$ & $235.6473$
+$ 10$ & $ 10$ \\
+$ 12$ & $ 12$ \\
+$ 15$ & $ 15$ \\
+$ 18$ & $ 18$ \\
+$ 21$ & $ 21$ \\
+$ 25$ & $ 25$
+n function calls
+$ 94$ & $104$ & $ 82$ & $124$ & $107$ & $104$
+n gradient calls
+$ 84$ & $ 93$ & $ 70$ & $114$ & $107$ & $104$
+|u|**2
+$8.9765$ \\
+$9.2680$ \\
+$10.0346$ \\
+$17.0733$ \\
+$16.9137$ \\
+$18.3647$
+could not load data/fwdsol_inivstep_targetheartNq220Nts250nu0.0005 -- lets compute it
+saved data/fwdsol_inivstep_targetheartNq220Nts250nu0.0005
+[fwd] Elapsed: 4.38849186897
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.0005
+[bwd] Elapsed: 0.000900983810425
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0580279827118
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0574638843536
+solving the reduced optimization problem
+Warning: Maximum number of iterations has been exceeded.
+         Current function value: 0.018380
+         Iterations: 100
+         Function evaluations: 104
+         Gradient evaluations: 104
+[bfgs optimization] Elapsed: 25.1614990234
+evaluating the full cost function
+could not load data/fwdsol_inivstep_targetheartNq220Nts250nu0.001 -- lets compute it
+saved data/fwdsol_inivstep_targetheartNq220Nts250nu0.001
+[fwd] Elapsed: 4.76293611526
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.001
+[bwd] Elapsed: 0.000974178314209
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0577001571655
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0572509765625
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.018219
+         Iterations: 93
+         Function evaluations: 134
+         Gradient evaluations: 122
+[bfgs optimization] Elapsed: 27.9596829414
+evaluating the full cost function
+could not load data/fwdsol_inivstep_targetheartNq220Nts250nu0.002 -- lets compute it
+saved data/fwdsol_inivstep_targetheartNq220Nts250nu0.002
+[fwd] Elapsed: 4.53327584267
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.002
+[bwd] Elapsed: 0.000972986221313
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0577938556671
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0573019981384
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.016165
+         Iterations: 97
+         Function evaluations: 137
+         Gradient evaluations: 126
+[bfgs optimization] Elapsed: 27.6044390202
+evaluating the full cost function
+could not load data/fwdsol_inivstep_targetheartNq220Nts250nu0.004 -- lets compute it
+saved data/fwdsol_inivstep_targetheartNq220Nts250nu0.004
+[fwd] Elapsed: 6.60005688667
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.004
+[bwd] Elapsed: 0.00100684165955
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0578598976135
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0573449134827
+solving the reduced optimization problem
+Warning: Maximum number of iterations has been exceeded.
+         Current function value: 0.016233
+         Iterations: 100
+         Function evaluations: 108
+         Gradient evaluations: 108
+[bfgs optimization] Elapsed: 22.9947869778
+evaluating the full cost function
+could not load data/fwdsol_inivstep_targetheartNq220Nts250nu0.008 -- lets compute it
+saved data/fwdsol_inivstep_targetheartNq220Nts250nu0.008
+[fwd] Elapsed: 8.74486780167
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.008
+[bwd] Elapsed: 0.000977039337158
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0578320026398
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0573809146881
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.020321
+         Iterations: 62
+         Function evaluations: 108
+         Gradient evaluations: 97
+[bfgs optimization] Elapsed: 24.8748240471
+evaluating the full cost function
+could not load data/fwdsol_inivstep_targetheartNq220Nts250nu0.016 -- lets compute it
+saved data/fwdsol_inivstep_targetheartNq220Nts250nu0.016
+[fwd] Elapsed: 7.92167305946
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.016
+[bwd] Elapsed: 0.000988006591797
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0577390193939
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0573351383209
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.017175
+         Iterations: 77
+         Function evaluations: 104
+         Gradient evaluations: 94
+[bfgs optimization] Elapsed: 44.9373860359
+evaluating the full cost function
+could not load data/fwdsol_inivstep_targetheartNq220Nts250nu0.032 -- lets compute it
+saved data/fwdsol_inivstep_targetheartNq220Nts250nu0.032
+[fwd] Elapsed: 7.37446093559
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.032
+[bwd] Elapsed: 0.00098705291748
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0577809810638
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0572679042816
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.018411
+         Iterations: 70
+         Function evaluations: 99
+         Gradient evaluations: 88
+[bfgs optimization] Elapsed: 48.5196080208
+evaluating the full cost function
+### we check nu -- alpha=6.25e-05, N=100, tol=0.0001, (hq,hs)=(18,18)
+$0.0324$ & $0.0311$ & $0.0263$ & $0.0238$ & $0.0261$ & $0.0208$ & $0.0210$
+$0.0004$ & $0.0004$ & $0.0005$ & $0.0005$ & $0.0003$ & $0.0005$ & $0.0006$
+$0.0328$ & $0.0314$ & $0.0267$ & $0.0243$ & $0.0264$ & $0.0214$ & $0.0216$
+$25.1615$ & $27.9597$ & $27.6044$ & $22.9948$ & $24.8748$ & $44.9374$ & $48.5196$
+$5.00e-04$ & $1.00e-03$ & $2.00e-03$ & $4.00e-03$ & $8.00e-03$ & $1.60e-02$ & $3.20e-02$
+n function calls
+$104$ & $134$ & $137$ & $108$ & $108$ & $104$ & $ 99$
+n gradient calls
+$104$ & $122$ & $126$ & $108$ & $ 97$ & $ 94$ & $ 88$
+|u|**2
+$12.3533$ \\
+$11.5605$ \\
+$14.6176$ \\
+$16.0386$ \\
+$9.8258$ \\
+$17.0299$ \\
+$19.3350$
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.0005
+[fwd] Elapsed: 0.00107312202454
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.0005
+[bwd] Elapsed: 0.000907897949219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.041720867157
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0408918857574
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.017484
+         Iterations: 95
+         Function evaluations: 125
+         Gradient evaluations: 114
+[bfgs optimization] Elapsed: 17.2605001926
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.001
+[fwd] Elapsed: 0.000994920730591
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.001
+[bwd] Elapsed: 0.000921010971069
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0416181087494
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0408918857574
+solving the reduced optimization problem
+Warning: Maximum number of iterations has been exceeded.
+         Current function value: 0.016814
+         Iterations: 100
+         Function evaluations: 110
+         Gradient evaluations: 110
+[bfgs optimization] Elapsed: 16.141835928
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.002
+[fwd] Elapsed: 0.0010130405426
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.002
+[bwd] Elapsed: 0.00091814994812
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0413970947266
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0407431125641
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.016884
+         Iterations: 79
+         Function evaluations: 111
+         Gradient evaluations: 101
+[bfgs optimization] Elapsed: 14.3863019943
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.004
+[fwd] Elapsed: 0.00101900100708
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.004
+[bwd] Elapsed: 0.000830888748169
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0413889884949
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0407238006592
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.015282
+         Iterations: 91
+         Function evaluations: 131
+         Gradient evaluations: 119
+[bfgs optimization] Elapsed: 17.0835399628
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.008
+[fwd] Elapsed: 0.00104284286499
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.008
+[bwd] Elapsed: 0.00113296508789
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0414688587189
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0407807826996
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.014306
+         Iterations: 90
+         Function evaluations: 118
+         Gradient evaluations: 106
+[bfgs optimization] Elapsed: 15.4442238808
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.016
+[fwd] Elapsed: 0.00125813484192
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.016
+[bwd] Elapsed: 0.000852823257446
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0414979457855
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0407528877258
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.016505
+         Iterations: 65
+         Function evaluations: 95
+         Gradient evaluations: 86
+[bfgs optimization] Elapsed: 24.3180389404
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.032
+[fwd] Elapsed: 0.00105404853821
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.032
+[bwd] Elapsed: 0.000855922698975
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0415661334991
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0408580303192
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.018392
+         Iterations: 54
+         Function evaluations: 86
+         Gradient evaluations: 78
+[bfgs optimization] Elapsed: 26.6826999187
+evaluating the full cost function
+### we check nu -- alpha=6.25e-05, N=100, tol=0.0001, (hq,hs)=(13,18)
+$0.0346$ & $0.0337$ & $0.0309$ & $0.0269$ & $0.0223$ & $0.0234$ & $0.0243$
+$0.0003$ & $0.0004$ & $0.0004$ & $0.0004$ & $0.0005$ & $0.0004$ & $0.0004$
+$0.0349$ & $0.0341$ & $0.0313$ & $0.0274$ & $0.0229$ & $0.0238$ & $0.0247$
+$17.2605$ & $16.1418$ & $14.3863$ & $17.0835$ & $15.4442$ & $24.3180$ & $26.6827$
+$5.00e-04$ & $1.00e-03$ & $2.00e-03$ & $4.00e-03$ & $8.00e-03$ & $1.60e-02$ & $3.20e-02$
+n function calls
+$125$ & $110$ & $111$ & $131$ & $118$ & $ 95$ & $ 86$
+n gradient calls
+$114$ & $110$ & $101$ & $119$ & $106$ & $ 86$ & $ 78$
+|u|**2
+$11.1728$ \\
+$12.5177$ \\
+$11.5401$ \\
+$14.3210$ \\
+$17.2647$ \\
+$14.1833$ \\
+$12.7186$
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.00107598304749
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.00092601776123
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0579569339752
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0574519634247
+solving the reduced optimization problem
+Warning: Maximum number of iterations has been exceeded.
+         Current function value: 0.014997
+         Iterations: 100
+         Function evaluations: 106
+         Gradient evaluations: 106
+[bfgs optimization] Elapsed: 22.7701921463
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000995874404907
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.00083589553833
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0580589771271
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0575170516968
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.016861
+         Iterations: 85
+         Function evaluations: 109
+         Gradient evaluations: 97
+[bfgs optimization] Elapsed: 20.519534111
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000999927520752
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.00112390518188
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0580630302429
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0575299263
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.016994
+         Iterations: 84
+         Function evaluations: 132
+         Gradient evaluations: 122
+[bfgs optimization] Elapsed: 24.2629439831
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.00125098228455
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000869035720825
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0582981109619
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0577170848846
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.015767
+         Iterations: 98
+         Function evaluations: 124
+         Gradient evaluations: 114
+[bfgs optimization] Elapsed: 24.8361060619
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.00101113319397
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000838994979858
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0581440925598
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0576200485229
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.017543
+         Iterations: 87
+         Function evaluations: 137
+         Gradient evaluations: 127
+[bfgs optimization] Elapsed: 25.2898280621
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.00103497505188
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000846147537231
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0579400062561
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0574178695679
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.022607
+         Iterations: 60
+         Function evaluations: 110
+         Gradient evaluations: 105
+[bfgs optimization] Elapsed: 18.7766540051
+evaluating the full cost function
+### we check alpha -- nu=0.005, N=100, tol=0.0001, (hq,hs)=(18,18)
+$0.0210$ & $0.0228$ & $0.0229$ & $0.0213$ & $0.0228$ & $0.0281$
+$0.0001$ & $0.0001$ & $0.0002$ & $0.0005$ & $0.0008$ & $0.0011$
+$0.0210$ & $0.0229$ & $0.0231$ & $0.0219$ & $0.0236$ & $0.0293$
+$22.7702$ & $20.5195$ & $24.2629$ & $24.8361$ & $25.2898$ & $18.7767$
+$7.81e-06$ & $1.56e-05$ & $3.13e-05$ & $6.25e-05$ & $1.25e-04$ & $2.50e-04$
+n function calls
+$106$ & $109$ & $132$ & $124$ & $137$ & $110$
+n gradient calls
+$106$ & $ 97$ & $122$ & $114$ & $127$ & $105$
+|u|**2
+$16.6321$ \\
+$13.3581$ \\
+$13.6888$ \\
+$17.0733$ \\
+$13.0107$ \\
+$9.0108$
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.00102591514587
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000823974609375
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.041403055191
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0407810211182
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.013396
+         Iterations: 96
+         Function evaluations: 130
+         Gradient evaluations: 122
+[bfgs optimization] Elapsed: 17.8579630852
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.000985860824585
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.00082802772522
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0413501262665
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0406601428986
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.013547
+         Iterations: 97
+         Function evaluations: 147
+         Gradient evaluations: 138
+[bfgs optimization] Elapsed: 20.1444511414
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.00104117393494
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.00111293792725
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.041522026062
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0408389568329
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.015566
+         Iterations: 85
+         Function evaluations: 108
+         Gradient evaluations: 98
+[bfgs optimization] Elapsed: 13.7720990181
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.0012629032135
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000862121582031
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0415661334991
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0408339500427
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.014071
+         Iterations: 99
+         Function evaluations: 131
+         Gradient evaluations: 120
+[bfgs optimization] Elapsed: 17.7061049938
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.00102591514587
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000874996185303
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0415019989014
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0408289432526
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.016318
+         Iterations: 87
+         Function evaluations: 138
+         Gradient evaluations: 128
+[bfgs optimization] Elapsed: 18.1165211201
+evaluating the full cost function
+loaded data/fwdsol_inivstep_targetheartNq220Nts250nu0.005
+[fwd] Elapsed: 0.00103211402893
+loaded data/bwdsol_inivstep_targetheartNq220Nts250nu0.005
+[bwd] Elapsed: 0.000845909118652
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_Y_dimy219
+loaded factor F that gives M = F*F.T from: data/sparse_massmat_factor_S_dims120
+assembling the reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0414719581604
+assembling the bwd reduced tensor...
+... in space
+[assemble the nonlinear coefficients] Elapsed: 0.0408539772034
+solving the reduced optimization problem
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.020117
+         Iterations: 60
+         Function evaluations: 100
+         Gradient evaluations: 90
+[bfgs optimization] Elapsed: 11.4752371311
+evaluating the full cost function
+### we check alpha -- nu=0.005, N=100, tol=0.0001, (hq,hs)=(13,18)
+$0.0242$ & $0.0242$ & $0.0265$ & $0.0243$ & $0.0266$ & $0.0302$
+$0.0001$ & $0.0001$ & $0.0002$ & $0.0006$ & $0.0009$ & $0.0012$
+$0.0242$ & $0.0244$ & $0.0267$ & $0.0249$ & $0.0275$ & $0.0313$
+$17.8580$ & $20.1445$ & $13.7721$ & $17.7061$ & $18.1165$ & $11.4752$
+$7.81e-06$ & $1.56e-05$ & $3.13e-05$ & $6.25e-05$ & $1.25e-04$ & $2.50e-04$
+n function calls
+$130$ & $147$ & $108$ & $131$ & $138$ & $100$
+n gradient calls
+$122$ & $138$ & $ 98$ & $120$ & $128$ & $ 90$
+|u|**2
+$18.3393$ \\
+$18.5301$ \\
+$13.3273$ \\
+$18.9687$ \\
+$13.8476$ \\
+$9.4158$
