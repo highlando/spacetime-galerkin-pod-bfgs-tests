@@ -1,7 +1,7 @@
 space-time Galerkin POD 
 ---
 
-Code and hardware documentation of the numerical tests reported in our preprint *Space-time Galerkin POD with application in optimal control of semi-linear parabolic partial differential equations*.
+Code and hardware documentation of the numerical tests reported in our first submission of *Space-time Galerkin POD with application in optimal control of semi-linear parabolic partial differential equations*.
 
 [![DOI](https://zenodo.org/badge/73575460.svg)](https://zenodo.org/badge/latestdoi/73575460)
 
@@ -11,7 +11,15 @@ Implementation of space-time generalized POD and space-time Galerkin for solving
 
 ### Setup
 Change directory to `spacetime-pod-python/`.
-To rerun the numerical examples run `python run_numtests.py`. Set `timingsonly = True` there, to only get the timings.
+To rerun the numerical examples run 
+```
+python2.7 run_numtests_genpod.py
+python2.7 run_numtests_bfgspod_step.py
+python2.7 run_numtests_bfgspod_heartshape.py
+```
+The script `run_numtests_genpod.py` has a switch for the two testcases `inival` and `heartshape`.
+
+To get the timings, set `timingsonly = True` in the scripts.
 
 ### Dependencies:
  * dolfin (FEniCS) (v 1.3.0; 1.5.0; 2016.2.0)
@@ -27,14 +35,5 @@ To rerun the numerical examples run `python run_numtests.py`. Set `timingsonly =
    * [sadptprj_riclyap_adi](https://github.com/highlando/sadptprj_riclyap_adi) -- linear algebra helper routines
  * this repo already contains the home-brew modules and -- for the default parameters -- the factorized mass matrices
 
-## Classical POD and BFGS (Matlab)
-Implementation of classical POD for the space reduction and BFGS for the optimization.
-
-### Setup 
-Change directory to `pod-bfgs-matlab/`. To rerun the numerical tests, run `driver_tab9.m`, `driver_tab10.m`, or `driver_tab11.m`.
-
-### Dependencies
- * Matlab (v 8.0.0.783 (R2012b); 9.1.0.441655 (R2016b))
-
 ## Hardware documentation
-See `logs_adelheid` for the *logfiles* of the numerical tests and the hardware specifications.
+See `logs_pc764` for the *logfiles* of the numerical tests and the hardware specification of the PC used for the tests reported in the manuscript.
