@@ -70,7 +70,7 @@ def get_burger_tensor(Uky=None, Uks=None, datastr=None, V=None, diribc=None,
     # loading/assembling the components of the tensor
     try:
         if datastr is None or debug:
-            print "no datastr specified or `debug` -- won't load/save any data"
+            print("no datastr specified or `debug` -- won't load/save any data")
             raise IOError
         else:
             fjs = open(datastr)
@@ -80,11 +80,11 @@ def get_burger_tensor(Uky=None, Uks=None, datastr=None, V=None, diribc=None,
             if spaceonly:
                 return uvvdxl, None
             htittl = nonlty_listtoarray(burgernonldict['htittl'])
-            print 'Loaded the coefficients for the nonlinearity from {0}'.\
-                format(datastr)
+            print('Loaded the coefficients for the nonlinearity from {0}'.\
+                format(datastr))
     except IOError:
         with dou.Timer('assemble the nonlinear coefficients'):
-            print '... in space'
+            print('... in space')
             uvvdxl = dbs.get_burgertensor_spacecomp(podmat=Uky, V=V,
                                                     Ukyleft=Ukyconv,
                                                     bwd=bwd,
@@ -92,11 +92,11 @@ def get_burger_tensor(Uky=None, Uks=None, datastr=None, V=None, diribc=None,
                                                     diribc=diribc)
             if spaceonly:
                 return uvvdxl, None
-            print '... in time'
+            print('... in time')
             htittl = get_burgertensor_timecomp(podmat=Uks, sdim=sdim,
                                                Uksconv=Uksconv,
                                                tmesh=tmesh, basfuntype='pl')
-        print '...done'
+        print('...done')
 
         # saveit
         if datastr is not None:
@@ -105,8 +105,8 @@ def get_burger_tensor(Uky=None, Uks=None, datastr=None, V=None, diribc=None,
             f = open(datastr, 'w')
             f.write(json.dumps(burgernonldict))
             f.close()
-            print 'Saved the coefficients for the nonlinearity to {0}'.\
-                format(datastr)
+            print('Saved the coefficients for the nonlinearity to {0}'.\
+                format(datastr))
     return uvvdxl, htittl
 
 

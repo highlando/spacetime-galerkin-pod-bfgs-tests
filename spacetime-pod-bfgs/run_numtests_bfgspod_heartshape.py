@@ -218,12 +218,12 @@ if checkbwdtimings:
     eva_redbwd, vv = bfgs_opti(**testitdict)
     sol, odeintoutput, redbwdrhs, reduceda, vfun = eva_redbwd(vv, debug=True)
     midvindx = basehs/2
-    print 'number of function evaluations: {0}'.format(odeintoutput['nfe'][-1])
+    print('number of function evaluations: {0}'.format(odeintoutput['nfe'][-1]))
     midv = vv[midvindx*basehq:(midvindx+1)*basehq].flatten()
-    print 'do some \n\n%timeit redbwdrhs(midv, 0.55555) \n'
-    print 'and multiply it with {0}'.format(odeintoutput['nfe'][-1]) +\
-          ' to estimate the time spent on the nonlinearity'
-    print 'however, substract the time for the interpolation of v: \n'
-    print '%timeit vfun(0.55555) \n'
-    print '\ncompare it to \n\n%timeit np.dot(reduceda, midv) \n'
-    print 'to see what could be saved...'
+    print('do some \n\n%timeit redbwdrhs(midv, 0.55555) \n')
+    print('and multiply it with {0}'.format(odeintoutput['nfe'][-1]) +\
+          ' to estimate the time spent on the nonlinearity')
+    print('however, substract the time for the interpolation of v: \n')
+    print('%timeit vfun(0.55555) \n')
+    print('\ncompare it to \n\n%timeit np.dot(reduceda, midv) \n')
+    print('to see what could be saved...')

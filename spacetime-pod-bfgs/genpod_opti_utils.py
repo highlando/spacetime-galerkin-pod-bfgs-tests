@@ -11,7 +11,7 @@ import dolfin_navier_scipy.data_output_utils as dou
 try:
     import numdifftools as nd
 except ImportError:
-    print 'can not import numdifftool -- can do without'
+    print('can not import numdifftool -- can do without')
 
 
 __all__ = ['stateadjspatibas',

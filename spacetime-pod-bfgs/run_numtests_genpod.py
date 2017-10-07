@@ -160,8 +160,8 @@ if viscocheck:
     if makeapic:
         testitdict.update(hq=altbasehq, hs=altbasehs, nu=viscolist[3],
                           plotplease=True)
-        print '### hq={0}, hs={1}, nu={2}, alpha={3}'.\
-            format(altbasehq, altbasehs, testitdict['nu'], testitdict['alpha'])
+        print('### hq={0}, hs={1}, nu={2}, alpha={3}'.\
+            format(altbasehq, altbasehs, testitdict['nu'], testitdict['alpha']))
         _, _ = testit(**testitdict)
         raise Warning('We only wanna plot')
 
@@ -175,7 +175,7 @@ if viscocheck:
         mycheckit(updatetestdict, viscolist, vthfstr='.1e', infostr=infostr)
 
     if basecheck:
-        print 'we check nu...'
+        print('we check nu...')
 
         def updatetestdict(testdict, cnu):
             testitdict.update(dict(hq=basehq, hs=basehs, nu=cnu,
@@ -191,8 +191,8 @@ if alphacheck:
     if makeapic:
         testitdict.update(hq=altbasehq, hs=altbasehs, alpha=alphalist[-1],
                           plotplease=True)
-        print '### hq={0}, hs={1}, nu={2}, alpha={3}'.\
-            format(altbasehq, altbasehs, testitdict['nu'], alphalist[-1])
+        print('### hq={0}, hs={1}, nu={2}, alpha={3}'.\
+            format(altbasehq, altbasehs, testitdict['nu'], alphalist[-1]))
         _, _ = testit(**testitdict)
         raise Warning('We only wanna plot')
 
@@ -207,7 +207,7 @@ if alphacheck:
         mycheckit(updatetestdict, alphalist, vthfstr='.2e', infostr=infostr)
 
     if basecheck:
-        print 'we check alpha ...'
+        print('we check alpha ...')
 
         def updatetestdict(testdict, calpha):
             testitdict.update(dict(hq=basehq, hs=basehs, nu=basenu,

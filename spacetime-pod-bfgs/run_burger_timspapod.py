@@ -124,7 +124,7 @@ def comp_spatimepodgal(nul=[1e-2], hq=12, hs=12, nu=None,
         apprxerr = spu.\
             timspanorm(fullsol-fssolt.T, mspace=My, mtime=Ms)/solnorm
         if verbose:
-            print 'Relative time/space approximation error: ', apprxerr
+            print('Relative time/space approximation error: ', apprxerr)
         return apprxerr[0][0]
     else:
         return None
@@ -173,7 +173,7 @@ if __name__ == '__main__':
 
         f = open(datastr, 'w')
         f.write(json.dumps(fctdct))
-        print 'results dumped into json:', datastr
+        print('results dumped into json:', datastr)
         f.close()
 
         cpu.para_plot(**fctdct)
@@ -204,7 +204,7 @@ if __name__ == '__main__':
 
         f = open(datastr, 'w')
         f.write(json.dumps(fctdct))
-        print 'results dumped into json:', datastr
+        print('results dumped into json:', datastr)
         f.close()
 
         cpu.para_plot(**fctdct)

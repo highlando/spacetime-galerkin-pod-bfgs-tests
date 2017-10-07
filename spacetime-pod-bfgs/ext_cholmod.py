@@ -40,5 +40,5 @@ if __name__ == '__main__':
     facmy = SparseFactorMassmat(mockmy)
     lytitestrhs = facmy.solve_Ft(testrhs)
 
-    print np.allclose(mockmy.todense(), (facmy.F*facmy.Ft).todense())
-    print np.allclose(testrhs, facmy.Ft*lytitestrhs)
+    print(np.allclose(mockmy.todense(), (facmy.F*facmy.Ft).todense()))
+    print(np.allclose(testrhs, facmy.Ft*lytitestrhs))

@@ -39,7 +39,7 @@ if plotplease:
 
 # get the upper half
 inds = np.lexsort(np.fliplr(coarray).T)
-Nhalf = N/2
+Nhalf = np.int(np.floor(N/2))
 scoarray = coarray[inds, :]
 scoarray = scoarray[Nhalf:, :]
 

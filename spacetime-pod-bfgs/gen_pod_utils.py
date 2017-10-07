@@ -7,7 +7,7 @@ import sadptprj_riclyap_adi.lin_alg_utils as lau
 try:
     from ldfnp_ext_cholmod import SparseFactorMassmat
 except ImportError:
-    print 'no `sksparse.cholmod` gonna use dense routines'
+    print('no `sksparse.cholmod` gonna use dense routines')
     from mock_ext_cholmod import SparseFactorMassmat
 
 __all__ = ['uBasPLF',
@@ -413,7 +413,7 @@ def get_genpodmats(sol=None, poddim=None, sdim=None, tmesh=None,
         plt.title('Singular Values of the generalized measurement matrix')
         plt.legend()
         plt.show(block=False)
-        print 'POD-ratio: {0}'.format(np.sum(S[0:poddim]) / np.sum(S))
+        print('POD-ratio: {0}'.format(np.sum(S[0:poddim]) / np.sum(S)))
 
     return Uk
 
@@ -430,7 +430,7 @@ def get_ksvvecs(sol=None, poddim=None, plotsvs=False, labl='SVs'):
         plt.title('Singular Values of the Snapshot Matrix')
         plt.legend()
         plt.show(block=False)
-        print 'POD-ratio: {0}'.format(np.sum(S[0:poddim]) / np.sum(S))
+        print('POD-ratio: {0}'.format(np.sum(S[0:poddim]) / np.sum(S)))
 
     return Uk
 
@@ -576,7 +576,7 @@ def get_podred_model(M=None, A=None, nonl=None, rhs=None, Uk=None,
             ripe = np.linalg.norm(sol[:, 0] - np.dot(Uk, y_red).flatten()) /\
                 np.linalg.norm(sol[:, 0])
 
-            print 'relprojection error in initial value: {0}'.format(ripe)
+            print('relprojection error in initial value: {0}'.format(ripe))
     else:
         y_red = None
 
@@ -640,7 +640,7 @@ def get_spaprjredmod(M=None, A=None, nonl=None, rhs=None, Uk=None, prjUk=None):
 
 
 def get_prjred_modfem(M=None, A=None, nonl=None, rhs=None, Uk=None):
-    print 'deprecated: `gpu.get_prjred_modfem`'
+    print('deprecated: `gpu.get_prjred_modfem`')
     from sksparse.cholmod import cholesky
     mfac = cholesky(M)
 

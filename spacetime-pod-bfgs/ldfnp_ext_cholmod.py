@@ -4,8 +4,8 @@ import numpy as np
 try:
     from sksparse.cholmod import cholesky
 except ImportError:
-    print 'Cannot import sksparse -- hope we can do without'
-    print 'Caution: solving with the factor F uses dense routines'
+    print('Cannot import sksparse -- hope we can do without')
+    print('Caution: solving with the factor F uses dense routines')
 
 import dolfin_navier_scipy.data_output_utils as dou
 
@@ -22,12 +22,12 @@ class SparseFactorMassmat:
         if filestr is not None:
             try:
                 self.F = dou.load_spa(filestr + '_F')
-                print 'loaded factor F that gives M = F*F.T from: ' + filestr
+                print('loaded factor F that gives M = F*F.T from: ' + filestr)
             except IOError:
                 self.cmfac = cholesky(sps.csc_matrix(massmat))
                 self.F = self.cmfac.apply_Pt(self.cmfac.L())
                 dou.save_spa(self.F, filestr + '_F')
-                print 'saved factor F that gives M = F*F.T to: ' + filestr
+                print('saved factor F that gives M = F*F.T to: ' + filestr)
 
         else:
             try:
@@ -60,5 +60,5 @@ if __name__ == '__main__':
     facmy = SparseFactorMassmat(mockmy)
     lytitestrhs = facmy.solve_Ft(testrhs)
 
-    print np.allclose(mockmy.todense(), (facmy.F*facmy.Ft).todense())
-    print np.allclose(testrhs, facmy.Ft*lytitestrhs)
+    print(np.allclose(mockmy.todense(), (facmy.F*facmy.Ft).todense()))
+    print(np.allclose(testrhs, facmy.Ft*lytitestrhs))

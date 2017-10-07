@@ -17,7 +17,7 @@ def get_podmats(Y, poddim, plotsvs=False):
         plt.title('Singular Values of snapshot matrix')
         plt.legend()
         plt.show(block=False)
-        print 'POD-ratio: {0}'.format(np.sum(S[0:poddim]) / np.sum(S))
+        print('POD-ratio: {0}'.format(np.sum(S[0:poddim]) / np.sum(S)))
 
     return Uk
 
@@ -43,8 +43,8 @@ def get_podred_model(M, A, Y, y0, f, poddim, k, tmesh=None,
 
     y_red = np.dot(Uk.T, Y[:, 0])
     if verbose:
-        print 'projection error in initial value: {0}'.\
-            format(np.linalg.norm(Y[:, 0] - np.dot(Uk, y_red).flatten()))
+        print('projection error in initial value: {0}'.\
+            format(np.linalg.norm(Y[:, 0] - np.dot(Uk, y_red).flatten())))
 
     return A_red, y_red, rhs_red, Uk
 
@@ -68,7 +68,7 @@ def get_mayf(N=10, Re=1e2, t0=0.0, tE=1.0, Nts=11, matprfx='dolfindata/dcmats',
     datstraf = defdata(N=N, Re=Re, t0=None, tE=None, Nts=None, prfx=matprfx)
     datstrmbj = defdata(N=N, Re=None, t0=None, tE=None, Nts=None, prfx=matprfx)
 
-    print 'Read data file: ' + datstry
+    print('Read data file: ' + datstry)
 
     try:
         # sysmats for system Mv' + Av = rhs + Bu

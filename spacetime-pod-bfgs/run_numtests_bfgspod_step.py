@@ -219,20 +219,20 @@ if checkbwdtimings:
     (sol, odeintoutput, redbwdrhs_tns,
      redbwdrhs_vdx, reduceda, vfun) = eva_redbwd(vv, debug=True)
     midvindx = basehs/2
-    print 'number of function evaluations: {0}'.format(odeintoutput['nfe'][-1])
+    print('number of function evaluations: {0}'.format(odeintoutput['nfe'][-1]))
     iniv = vv[0*basehq:basehq].flatten()
     midv = vv[midvindx*basehq:(midvindx+1)*basehq].flatten()
     endv = vv[-1*basehq:].flatten()
-    print 'do some \n\n%timeit redbwdrhs_vdx(iniv, 0.0) \n'
-    print 'do some \n\n%timeit redbwdrhs_tns(iniv, 0.0) \n'
-    print 'do some \n\n%timeit redbwdrhs(midv, 0.5) \n'
-    print 'do some \n\n%timeit redbwdrhs(endv, 1.) \n'
-    print 'and multiply it with {0}'.format(odeintoutput['nfe'][-1]) +\
-          ' to estimate the time spent on the nonlinearity'
-    print 'however, substract the time for the interpolation of v: \n'
-    print '%timeit vfun(0.55555) \n'
-    print '\ncompare it to \n\n%timeit np.dot(reduceda, midv) \n'
-    print 'to see what could be saved...'
+    print('do some \n\n%timeit redbwdrhs_vdx(iniv, 0.0) \n')
+    print('do some \n\n%timeit redbwdrhs_tns(iniv, 0.0) \n')
+    print('do some \n\n%timeit redbwdrhs(midv, 0.5) \n')
+    print('do some \n\n%timeit redbwdrhs(endv, 1.) \n')
+    print('and multiply it with {0}'.format(odeintoutput['nfe'][-1]) +\
+          ' to estimate the time spent on the nonlinearity')
+    print('however, substract the time for the interpolation of v: \n')
+    print('%timeit vfun(0.55555) \n')
+    print('\ncompare it to \n\n%timeit np.dot(reduceda, midv) \n')
+    print('to see what could be saved...')
     # from pycallgraph import PyCallGraph
     # from pycallgraph.output import GraphvizOutput
     # with PyCallGraph(output=GraphvizOutput()):

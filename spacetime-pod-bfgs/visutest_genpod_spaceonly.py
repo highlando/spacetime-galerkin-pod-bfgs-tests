@@ -120,7 +120,7 @@ def space_genpod_burger(Nq=None, Nts=None,
     redsimudict = dict(iniv=hiniv, A=AVk, M=MVk, nfunc=nonl_red,
                        rhs=rhs_red, tmesh=redtmesh)
     with dou.Timer('redfwd'):
-        print 'solving the reduced  problem (state)...'
+        print('solving the reduced  problem (state)...')
         redvv = gpu.time_int_semil(**redsimudict)
     redvv = redvv.reshape((hs, hq))
     plotmat(np.dot(redvv, lyitUVy.T), fignum=1233, **dmndct)
@@ -137,7 +137,7 @@ def space_genpod_burger(Nq=None, Nts=None,
     redbwdsimudict = dict(iniv=htermiL, A=ALk, M=MLk, nfunc=bwdl_red,
                           rhs=bwdrhs_red, tmesh=redtmesh)
     with dou.Timer('redbwd'):
-        print 'solving the reduced  problem (adjoint)...'
+        print('solving the reduced  problem (adjoint)...')
         redll = gpu.time_int_semil(**redbwdsimudict)
     redll = np.flipud(redll)  # flip the to make it forward time
     redll = redll.reshape((hs, hq))

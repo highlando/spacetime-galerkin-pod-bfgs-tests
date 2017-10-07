@@ -5,7 +5,7 @@ from scipy.interpolate import interp1d
 try:
     import numdifftools as nd
 except ImportError:
-    print 'Cannot import numdifftools -- hope we don`t need it'
+    print('Cannot import numdifftools -- hope we don`t need it')
 
 import dolfin_navier_scipy.data_output_utils as dou
 
@@ -115,11 +115,11 @@ def companandjacos(tvvec, func=None, jacofunc=None):
     jvvn, jvva = ndjaco[:vld, :vld], anajaco[:vld, :vld]
     jvln, jvla = ndjaco[:vld, vld:], anajaco[:vld, vld:]
 
-    print 'diff in dJ: ', np.linalg.norm(ndjaco-anajaco)
-    print 'diff in dJ_11: ', np.linalg.norm(jvvn - jvva)
-    print 'diff in dJ_12: ', np.linalg.norm(jvln - jvla)
-    print 'diff in dJ_21: ', np.linalg.norm(jlvn - jlva)
-    print 'diff in dJ_22: ', np.linalg.norm(jlln - jlla)
+    print('diff in dJ: ', np.linalg.norm(ndjaco-anajaco))
+    print('diff in dJ_11: ', np.linalg.norm(jvvn - jvva))
+    print('diff in dJ_12: ', np.linalg.norm(jvln - jvla))
+    print('diff in dJ_21: ', np.linalg.norm(jlvn - jlva))
+    print('diff in dJ_22: ', np.linalg.norm(jlln - jlla))
 
 
 def eva_costfun(vopt=None, uopt=None, qmat=None, rmat=None, ms=None,
@@ -183,16 +183,19 @@ def testit(Nq=None, Nts=None,
     (My, A, rhs, nfunc, femp) = dbs.\
         burgers_spacedisc(N=Nq, nu=nu, x0=x0, xE=xE, retfemdict=True)
     # define the initial value
+    nqbytwo = np.int(np.floor(Nq/2))
+    nqmobytwo = np.int(np.floor((Nq-1)/2))
     if inivtype == 'smooth':
         xrng = np.linspace(0, 2*np.pi, Nq-1)
         iniv = 0.5 - 0.5*np.sin(xrng + 0.5*np.pi)
         iniv = 0.5*iniv.reshape((Nq-1, 1))
     elif inivtype == 'step':
         # iniv = np.r_[np.ones(((Nq-1)/2, 1)), np.zeros(((Nq)/2, 1))]
-        iniv = np.r_[np.zeros(((Nq)/2, 1)), np.ones(((Nq-1)/2, 1))]
+        # iniv = np.r_[np.zeros((nqbytwo, 1)), np.ones((nqmobytwo, 1))]
+        iniv = np.r_[np.ones((nqbytwo, 1)), np.zeros((nqmobytwo, 1))]
     elif inivtype == 'ramp':
-        iniv = np.r_[np.linspace(0, 1, ((Nq-1)/2)).reshape(((Nq-1)/2, 1)),
-                     np.zeros(((Nq)/2, 1))]
+        iniv = np.r_[np.linspace(0, 1, (nqmobytwo)).reshape((nqmobytwo, 1)),
+                     np.zeros((nqbytwo, 1))]
     elif inivtype == 'zero':
         iniv = np.zeros((Nq-1, 1))
     # ### compute the forward snapshots
@@ -273,7 +276,7 @@ def testit(Nq=None, Nts=None,
     Vhms = np.dot(lsitUVs.T, Ms*lsitUVs)
     Vhdms = np.dot(lsitUVs.T, dms*lsitUVs)
 
-    print 'assembling the reduced tensor...'
+    print('assembling the reduced tensor...')
     datastr = 'data/fwd_iniv' + inivtype + '_tnsr_' + spacebasscheme + \
         '_target_' + target +\
         '_Nts{5}Nq{0}Ns{1}hq{2}hs{3}nu{4}'.format(Nq, Ns, hq, hs, nu, Nts)
@@ -300,7 +303,7 @@ def testit(Nq=None, Nts=None,
         Lhay, Lhmy, _, _, Lliftcoef, Lprojcoef =\
             gpu.get_spaprjredmod(M=My, A=A, Uk=lyitULy, prjUk=lyULy)
 
-        print 'assembling the bwd reduced tensor...'
+        print('assembling the bwd reduced tensor...')
         datastr = 'data/bwdtnsr_iniv' + inivtype + '_' + spacebasscheme +\
             '_target_' + target +\
             '_Nts{5}Nq{0}Ns{1}hq{2}hs{3}nu{4}'.format(Nq, Ns, hq, hs, nu, Nts)
@@ -343,7 +346,7 @@ def testit(Nq=None, Nts=None,
     # # forward problem
     if genpodstate:
         optiniV = np.tile(hiniv.T, hs-1).T
-        print 'solving the optimization problem (state)...'
+        print('solving the optimization problem (state)...')
         sol = spacetimesolve(func=vres, funcjaco=vresprime, inival=optiniV,
                              message='fwd problem - analytical jacobian')
         optiV = np.r_[hiniv.flatten(), sol]
@@ -354,7 +357,7 @@ def testit(Nq=None, Nts=None,
 
     if genpodadj:
         optiniL = np.zeros((hq*(hs-1), 1))
-        print 'solving the optimization problem (adjoint)...'
+        print('solving the optimization problem (adjoint)...')
         sol = spacetimesolve(func=lres, funcjaco=lresprime, inival=optiniL,
                              message='bwd problem - analytical jacobian')
         optiL = np.r_[sol, htermiL.flatten()]
@@ -364,7 +367,7 @@ def testit(Nq=None, Nts=None,
                     fignum=124, tikzfile=redmodelL_tkzf, **adjplotdict)
 
     if genpodcl:
-        print 'solving the optimization problem (fwdbwd)...'
+        print('solving the optimization problem (fwdbwd)...')
         fwdbwdini = True
         if fwdbwdini:
             hcurst = np.dot(lyUVy.T, np.dot(xms, lsitUVs))
@@ -420,7 +423,7 @@ def testit(Nq=None, Nts=None,
         simudict = dict(iniv=iniv, A=A, M=My, nfunc=nfunc,
                         rhs=burger_contrl_rhs, tmesh=snapshottmesh)
 
-        print 'back check...'
+        print('back check...')
         with dou.Timer('check back'):
             vv = gpu.time_int_semil(**simudict)
             if plotplease:
@@ -466,5 +469,5 @@ if __name__ == '__main__':
              nu=5e-3, alpha=1e-3)
 
     value, timerinfo = testit(**testitdict)
-    print 'Back check: value of costfunction: {0}'.format(value['value'])
-    print 'Back check: value of vterm: {0}'.format(value['vterm'])
+    print('Back check: value of costfunction: {0}'.format(value['value']))
+    print('Back check: value of vterm: {0}'.format(value['vterm']))

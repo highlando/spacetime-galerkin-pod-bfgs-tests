@@ -26,7 +26,7 @@ if __name__ == '__main__':
     datastr = 'burgv_nu{1}_N{0}_Nts{2}'.format(N, nu, Nts)
     gpodstr = 'genpod{2}_hydim{0}_sdim{1}_basefuntyp{3}'.\
         format(hydim, sdim, genpod, basfuntype)
-    print 'reduced model through ' + gpodstr
+    print('reduced model through ' + gpodstr)
     # rfile = dolfin.File('results/' + datastr + '.pvd')
 
     M, A, rhs, nfunc, femp = dbs.burgers_spacedisc(N=N, nu=nu, retfemdict=True)
@@ -89,6 +89,6 @@ if __name__ == '__main__':
     timespaceres = spu.get_spacetimepodres(tvvec=hshysol, dms=hdms, ms=hms,
                                            my=mred, ared=ared,
                                            nfunc=evabrgquadterm, rhs=None)
-    print timespaceres
+    print(timespaceres)
     # solproj = spu.expand_stpodsol(stpsol=hshysol, Uks=Uks, Uky=Uky)
     # plotmat(solproj)

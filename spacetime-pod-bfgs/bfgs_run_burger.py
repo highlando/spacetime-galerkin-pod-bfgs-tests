@@ -118,7 +118,7 @@ def bfgs_opti(Nq=None, Nts=None,
                              Uk=lyitUVy, prjUk=lyUVy)
     hiniv = projVcoef(iniv)
     # ## preassemble reduced nonlinearity as tensor
-    print 'assembling the reduced tensor...'
+    print('assembling the reduced tensor...')
     import burgers_genpod_utils as bgu
     datastr = 'data/fwd_iniv' + inivtype + '_tnsr_' + spacebasscheme + \
         '_target_' + target +\
@@ -141,7 +141,7 @@ def bfgs_opti(Nq=None, Nts=None,
     red_vdxop = gpu.get_redmatfunc(matfunc=vdxoperator, ULk=lyitULy,
                                    UVk=lyitUVy)
 
-    print 'assembling the bwd reduced tensor...'
+    print('assembling the bwd reduced tensor...')
     datastr = 'data/bwdtnsr_iniv' + inivtype + '_' + spacebasscheme +\
         '_target_' + target +\
         '_Nts{4}Nq{0}Ns{1}hq{2}nu{3}'.format(Nq, Ns, hq, nu, Nts)
@@ -209,13 +209,13 @@ def bfgs_opti(Nq=None, Nts=None,
             uk = gou.Xtoxvec(np.zeros((hq, hs)))
             myjaco = eva_redcostgrad(gou.Xtoxvec(uk).flatten())
             ndjaco = nd.Jacobian(eva_redcostfun)(gou.Xtoxvec(uk).flatten())
-            print 'diffnorm of the analytical and the numerical jacobian' +\
-                  ' `dJ={0}`'.format(np.linalg.norm(myjaco-ndjaco))
+            print('diffnorm of the analytical and the numerical jacobian' +\
+                  ' `dJ={0}`'.format(np.linalg.norm(myjaco-ndjaco)))
 
     uk = gou.Xtoxvec(np.zeros((hq, hs)))
 
     tfd = {}  # if timerecord else None
-    print 'solving the reduced optimization problem'
+    print('solving the reduced optimization problem')
 
     profileit = False
     if profileit:
@@ -254,7 +254,7 @@ def bfgs_opti(Nq=None, Nts=None,
         return tfd
 
     else:
-        print 'evaluating the full cost function'
+        print('evaluating the full cost function')
         fulcostvpart, fulcostupart = eva_liftucostfun(uopt, retparts=True)
 
         if plotplease:
@@ -294,5 +294,5 @@ if __name__ == '__main__':
 
     value, timerinfo = bfgs_opti(**testitdict)
 
-    print 'Back check: value of costfunction: {0}'.format(value['value'])
-    print 'Back check: value of vterm: {0}'.format(value['vterm'])
+    print('Back check: value of costfunction: {0}'.format(value['value']))
+    print('Back check: value of vterm: {0}'.format(value['vterm']))

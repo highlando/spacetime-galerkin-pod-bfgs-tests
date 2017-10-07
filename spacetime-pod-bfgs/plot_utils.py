@@ -28,7 +28,7 @@ def plotmat(sol, t0=0.0, tE=1.0, x0=0.0, xE=1.0, vmin=None, vmax=None,
             from matplotlib2tikz import save
             save(tikzfile + '.tikz')
         except ImportError:
-            print 'matplotlib2tikz need to export tikz filez'
+            print('matplotlib2tikz need to export tikz filez')
 
     plt.colorbar(orientation='horizontal')  # , shrink=.75)
     plt.show(block=False)
