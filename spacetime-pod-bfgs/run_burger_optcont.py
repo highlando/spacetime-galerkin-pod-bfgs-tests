@@ -379,10 +379,10 @@ def testit(Nq=None, Nts=None,
             #                 np.dot(gou.xvectoX(hcuradjvec, nq=hq, ns=hs),
             #                        lsitULs.T))).T, fignum=9998)
             optiniV = hcurstvec[hq:, :]
-            optiniV = hcuradjvec[:-hq, :]
+            optiniL = hcuradjvec[:-hq, :]
 
         else:
-            optiniV = np.tile(hiniv.T, hs-1).T
+            optiniV = np.zeros((hq*(hs-1), 1))
             optiniL = np.zeros((hq*(hs-1), 1))
         optiniVL = np.vstack([optiniV, optiniL])
         sol, timingsdict = \
