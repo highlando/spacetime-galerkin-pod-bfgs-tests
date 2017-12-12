@@ -12,8 +12,6 @@ import spacetime_function_utils as sfu
 import spacetime_pod_utils as spu
 import genpod_opti_utils as gou
 
-import sys
-sys.path.insert(0, '/home/heiland/work/code/2D-schloegl')
 import schloegl_model as sml
 
 import logging
