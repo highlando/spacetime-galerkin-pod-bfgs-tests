@@ -79,17 +79,36 @@ def burgers_bwd_spacedisc(V=None, diribc=None, ininds=None):
     return vdxop, fnctnl
 
 
-def burger_onedim_inival(Nq=None, inivtype='step'):
+def burger_onedim_inival(Nq=None, inivtype='step', V=None, ininds=None,
+                         xstep=0.5, **kwargs):
     # define the initial value
     if inivtype == 'smooth':
         xrng = np.linspace(0, 2*np.pi, Nq-1)
         iniv = 0.5 - 0.5*np.sin(xrng + 0.5*np.pi)
         iniv = 0.5*iniv.reshape((Nq-1, 1))
+
     elif inivtype == 'step':
+        class stpfunc(dolfin.Expression):
+            def eval(self, value, x):
+                if x[0] < xstep:
+                    value[0] = 1.
+                else:
+                    value[0] = 0.
+
+            def value_shape(self):
+                return (1,)
+
+        inivalexp = stpfunc(element=V.ufl_element())
+        inivalfunc = dolfin.interpolate(inivalexp, V)
+        iniv = inivalfunc.vector().array()[ininds].reshape((ininds.size, 1))
+
         # iniv = np.r_[np.ones(((Nq-1)/2, 1)), np.zeros(((Nq)/2, 1))]
-        iniv = np.r_[np.zeros(((Nq)/2, 1)), np.ones(((Nq-1)/2, 1))]
+        # iniv = np.r_[np.zeros((nqbytwo, 1)), np.ones((nqmobytwo, 1))]
+        # iniv = np.r_[np.ones((nqmobytwo, 1)), np.zeros((nqbytwo, 1))]
     elif inivtype == 'ramp':
-        iniv = np.r_[np.linspace(0, 1, ((Nq-1)/2)).reshape(((Nq-1)/2, 1)),
+        nqbytwo = np.int(np.floor(Nq/2))
+        nqmobytwo = np.int(np.floor((Nq-1)/2))
+        iniv = np.r_[np.linspace(0, 1, nqbytwo).reshape((nqmobytwo, 1)),
                      np.zeros(((Nq)/2, 1))]
     return iniv
 

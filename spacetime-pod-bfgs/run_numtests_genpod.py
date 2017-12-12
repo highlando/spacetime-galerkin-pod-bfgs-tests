@@ -16,14 +16,14 @@ alphacheck = False
 makeapic = True
 makeapic = False
 
-timingonly = False  # only timings for the optimization
 timingonly = True
+timingonly = False  # only timings for the optimization
 
 # ### make it come true
-basnumbercheck = True
+# basnumbercheck = True
 spatimbascheck = True
-viscocheck = True
-alphacheck = True
+# viscocheck = True
+# alphacheck = True
 
 # ### define the problem
 basenu = 5e-3
@@ -31,7 +31,7 @@ basealpha = 1e-3
 basehq, basehs = 12, 12
 altbasehq, altbasehs = 16, 8
 if target == 'heart':
-    altbasehq, altbasehs = 10, 15
+    altbasehq, altbasehs = 12, 16
     # basealpha = 1e-3
 
 basecheck = True
@@ -138,11 +138,12 @@ if basnumbercheck:
 
 if spatimbascheck:
     # hqhs = [(18, 6), (17, 7), (16, 8), (14, 10), (12, 12), (10, 14), (8, 16)]
-    hqupds = [+4,  3,  0,  0, -2, -2, -4]
-    hsupds = [-4, -2, -2,  0,  0,  3,  4]
-    # if target == 'heart':
-    #     hqupds = [+3, -1]
-    #     hsupds = [-1,  2]
+    if target == 'inival':
+        hqupds = [+4,  3,  0,  0, -2, -2, -4]
+        hsupds = [-4, -2, -2,  0,  0,  3,  4]
+    if target == 'heart':
+        hqupds = [+4,  4,  0,  0, -2, -2,  0]
+        hsupds = [+0, -2, -2,  0,  0,  4,  4]
     hqhs = []
     for idx in range(len(hqupds)):
         hqhs.append((basehq+hqupds[idx], basehs+hsupds[idx]))
@@ -160,8 +161,9 @@ if viscocheck:
     if makeapic:
         testitdict.update(hq=altbasehq, hs=altbasehs, nu=viscolist[3],
                           plotplease=True)
-        print('### hq={0}, hs={1}, nu={2}, alpha={3}'.\
-            format(altbasehq, altbasehs, testitdict['nu'], testitdict['alpha']))
+        print('### hq={0}, hs={1}, nu={2}, alpha={3}'.
+              format(altbasehq, altbasehs, testitdict['nu'],
+                     testitdict['alpha']))
         _, _ = testit(**testitdict)
         raise Warning('We only wanna plot')
 
@@ -191,8 +193,8 @@ if alphacheck:
     if makeapic:
         testitdict.update(hq=altbasehq, hs=altbasehs, alpha=alphalist[-1],
                           plotplease=True)
-        print('### hq={0}, hs={1}, nu={2}, alpha={3}'.\
-            format(altbasehq, altbasehs, testitdict['nu'], alphalist[-1]))
+        print('### hq={0}, hs={1}, nu={2}, alpha={3}'.
+              format(altbasehq, altbasehs, testitdict['nu'], alphalist[-1]))
         _, _ = testit(**testitdict)
         raise Warning('We only wanna plot')
 

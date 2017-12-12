@@ -2,7 +2,7 @@ from bfgs_run_burger import bfgs_opti
 
 from numtest_setup_utils import checkit
 
-timingonly = True
+timingonly = False
 numbertimings = 5
 checkbwdtimings = False
 plotplease = False
@@ -16,9 +16,9 @@ checkgtol = False
 # ## make it come true
 checkK = True
 checkhqhs = True
-checknu = True
-checkalpha = True
-checkgtol = True
+# checknu = True
+# checkalpha = True
+# checkgtol = True
 
 # ## other checks
 # checkits = True
@@ -62,8 +62,6 @@ if not checkbwdtimings:  # we need ipython functions later
         'sqppodlog_basenu{0}_basealpha{1}_basegtol{4}_basehqhs{2}{3}'.\
         format(basenu, basealpha, basehq, basehs, basegtol) + '_uterm_' +\
         'althqhs{0}{1}'.format(altbasehq, altbasehs)
-    if timingonly:
-        logstr = logstr + '__timings'
     import dolfin_navier_scipy.data_output_utils as dou
     dou.logtofile(logstr=logstr)
 

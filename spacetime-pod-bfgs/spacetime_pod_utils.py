@@ -5,7 +5,7 @@ import scipy.sparse as sps
 __all__ = ['eva_quadform',
            'expand_stpodsol',
            'apply_time_space_kronprod',
-           'get_spacetimepodres',
+           'spacetimepodres',
            'get_spatimpodres_jacobian',
            'timspanorm',
            'krontimspaproduct']
@@ -111,9 +111,9 @@ def apply_time_space_kronprod(tvvec=None, smat=None, qmat=None, iniv=None):
         return np.dot(np.kron(smatr, qmat), inivqvec)
 
 
-def get_spacetimepodres(tvvec=None, dms=None, ms=None, my=None, ared=None,
-                        nfunc=None, rhs=None, retnorm=False,
-                        termiv=None, iniv=None):
+def spacetimepodres(tvvec=None, dms=None, ms=None, my=None, ared=None,
+                    nfunc=None, rhs=None, retnorm=False,
+                    termiv=None, iniv=None):
     """ the residual of a space semi-explicit semi-linear space-time galerkin
 
     `R(tv) = [kron(dms, my) + kron(ms, ared)]*tv + nonl(tv) - rhs`
@@ -158,9 +158,13 @@ def get_spacetimepodres(tvvec=None, dms=None, ms=None, my=None, ared=None,
     if nfunc is None:
         nonlpart = 0
     else:
-        nonlpart = nfunc(tvvec=tvvec)
-    rhspart = 0 if rhs is None else rhs
+        nonlpart = (nfunc(tvvec=tvvec)).reshape(tvvec.shape)
+    rhspart = 0 if rhs is None else rhs.reshape(tvvec.shape)
     stpr = dtpart + apart + nonlpart - rhspart
+    if stpr.size > 2*tvvec.size:
+        pass
+        # import ipdb; ipdb.set_trace()
+
     if iniv is not None:
         stpr = stpr[iniv.size:, :]
     if termiv is not None:
@@ -202,7 +206,8 @@ def get_spatimpodres_jacobian(tvvec=None, dms=None, ms=None, my=None,
         dtpartmat = np.kron(dms, my)
 
     if nfuncjac is None:
-        nonlpartmat = 0*apartmat
+        nonlpartmat = 0*apartmat  # TODO: catch this
+        raise NotImplementedError()
     else:
         nonlpartmat = nfuncjac(tvvec=tvvec)
         if iniv is not None:

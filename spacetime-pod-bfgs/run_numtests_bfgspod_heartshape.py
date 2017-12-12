@@ -2,7 +2,7 @@ from bfgs_run_burger import bfgs_opti
 
 from numtest_setup_utils import checkit
 
-timingonly = True
+timingonly = False
 numbertimings = 5
 checkbwdtimings = False
 plotplease = False
@@ -15,10 +15,10 @@ checkgtol = False
 
 # ## make it come true
 checkK = True
-checkhqhs = True
-checknu = True
-checkalpha = True
-checkgtol = True
+# checkhqhs = True
+# checknu = True
+# checkalpha = True
+# checkgtol = True
 
 # ## other checks
 # checkits = True
@@ -26,7 +26,7 @@ checkits = False
 # checktols = True
 checktols = False
 
-baseits = 100  # 0  # it will terminate on its own
+baseits = 200  # 0  # it will terminate on its own
 basegtol = 2.5e-4
 basetol = 1e-4
 basenu = 5e-3
@@ -218,10 +218,10 @@ if checkbwdtimings:
     eva_redbwd, vv = bfgs_opti(**testitdict)
     sol, odeintoutput, redbwdrhs, reduceda, vfun = eva_redbwd(vv, debug=True)
     midvindx = basehs/2
-    print('number of function evaluations: {0}'.format(odeintoutput['nfe'][-1]))
+    print('number function evaluations: {0}'.format(odeintoutput['nfe'][-1]))
     midv = vv[midvindx*basehq:(midvindx+1)*basehq].flatten()
     print('do some \n\n%timeit redbwdrhs(midv, 0.55555) \n')
-    print('and multiply it with {0}'.format(odeintoutput['nfe'][-1]) +\
+    print('and multiply it with {0}'.format(odeintoutput['nfe'][-1]) +
           ' to estimate the time spent on the nonlinearity')
     print('however, substract the time for the interpolation of v: \n')
     print('%timeit vfun(0.55555) \n')

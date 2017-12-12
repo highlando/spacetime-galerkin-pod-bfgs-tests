@@ -1,6 +1,5 @@
 import numpy as np
 import scipy.sparse as sps
-from scipy.optimize import fsolve
 from scipy.interpolate import interp1d
 try:
     import numdifftools as nd
@@ -8,11 +7,11 @@ except ImportError:
     print('Cannot import numdifftools -- hope we don`t need it')
 
 import dolfin_navier_scipy.data_output_utils as dou
+import spacetime_galerkin_pod.gen_pod_utils as gpu
 
 import dolfin_burgers_scipy as dbs
 import burgers_genpod_utils as bgu
 import burgers_optcont_utils as bou
-import gen_pod_utils as gpu
 import spacetime_pod_utils as spu
 import genpod_opti_utils as gou
 
@@ -33,64 +32,50 @@ debug = False
 
 
 # helper functions
-def stateadjspatibas(xms=None, lms=None, Ms=None, My=None,
+def stateadjspatibas(xms=None, lms=None, Ms=None, My=None, onlyfwd=False,
                      nspacevecs=None, ntimevecs=None, spacebasscheme='VandL'):
 
-    # if spacebasscheme == 'VandL' or (spacebasscheme == 'onlyV'
-    #                                  or spacebasscheme == 'onlyL'):
-    lyitUVy, lyUVy, lsitUVs, lsUVs = gpu.\
-        get_podbases_wrtmassmats(xms=xms, Ms=Ms, My=My, nspacevecs=nspacevecs,
-                                 xtratreatini=True, ntimevecs=ntimevecs)
+    lyULy, lyitULy, lsitULs, lsULs = None, None, None, None
 
-    if lms is None:
-        lyitULy, lyULy, lsitULs, lsULs = None, None, None, None
-
-    else:
-        lyitULy, lyULy, lsitULs, lsULs = gpu.\
-            get_podbases_wrtmassmats(xms=lms, My=My, nspacevecs=nspacevecs,
-                                     Ms=Ms, ntimevecs=ntimevecs,
-                                     xtratreattermi=True)
-    if spacebasscheme == 'onlyV':
-        lyULy, lyitULy = lyUVy, lyitUVy
-
-    if spacebasscheme == 'onlyL':
-        lyUVy, lyitUVy = lyULy, lyitULy
-
-    if spacebasscheme == 'combined':
+    if spacebasscheme == 'combined' and lms is not None:
         lyitUVLy, lyUVLy, _, _ = gpu.\
             get_podbases_wrtmassmats(xms=[xms, lms], My=My, Ms=Ms,
                                      nspacevecs=nspacevecs, ntimevecs=0)
         lyUVy, lyitUVy = lyUVLy, lyitUVLy
-        lyULy, lyitULy = lyUVLy, lyitUVLy
+
+        _, _, lsitUVs, lsUVs = gpu.\
+            get_podbases_wrtmassmats(xms=xms, Ms=Ms, My=My,
+                                     xtratreatini=True, ntimevecs=ntimevecs)
+
+        if not onlyfwd:
+            lyULy, lyitULy = lyUVLy, lyitUVLy
+            _, _, lsitULs, lsULs = gpu.\
+                get_podbases_wrtmassmats(xms=lms, Ms=Ms, My=My,
+                                         xtratreattermi=True,
+                                         ntimevecs=ntimevecs)
+
+    else:
+        if spacebasscheme == 'combined' and lms is None:
+            raise UserWarning('you want `combined` pod bases but there is' +
+                              ' no lms -- gonna use `onlyV`')
+            cms = xms
+        if spacebasscheme == 'onlyV':
+            cms = xms
+        if spacebasscheme == 'onlyL':
+            cms = lms
+        lyUVLy, lyitUVLy, lsitUVs, lsUVs = gpu.\
+            get_podbases_wrtmassmats(xms=cms, Ms=Ms, My=My,
+                                     nspacevecs=nspacevecs,
+                                     xtratreatini=True, ntimevecs=ntimevecs)
+        lyUVy, lyitUVy = lyUVLy, lyitUVLy
+        if not onlyfwd:
+            lyULy, lyitULy = lyUVLy, lyitUVLy
+            _, _, lsitULs, lsULs = gpu.\
+                get_podbases_wrtmassmats(xms=cms, Ms=Ms, My=My,
+                                         xtratreattermi=True,
+                                         ntimevecs=ntimevecs)
 
     return lyitUVy, lyUVy, lsitUVs, lsUVs, lyitULy, lyULy, lsitULs, lsULs
-
-
-def spacetimesolve(func=None, funcjaco=None, inival=None, timerecord=False,
-                   usendjaco=False, message=None, printstats=True):
-    if logger.level == 10:
-        myjaco = funcjaco(inival.flatten())
-        ndjaco = nd.Jacobian(func)(inival.flatten())
-        logger.debug('diffnorm of the analytical and the numerical jacobian' +
-                     ' `dJ={0}`'.format(np.linalg.norm(myjaco-ndjaco)))
-
-    if usendjaco:
-        funcjaco = numerical_jacobian(func)
-
-    tfd = {}  # if timerecord else None
-    with dou.Timer(message, timerinfo=tfd):
-        if printstats:
-            sol, infdct, _, _ = fsolve(func, x0=inival.flatten(),
-                                       fprime=funcjaco, full_output=True)
-            logger.info(message + ': nfev={0}, normf={1}'.
-                        format(infdct['nfev'], np.linalg.norm(infdct['fvec'])))
-        else:
-            sol = fsolve(func, x0=inival.flatten(), fprime=funcjaco)
-
-    if timerecord:
-        return sol, tfd
-    else:
-        return sol
 
 
 def Xtoxvec(X):
@@ -183,21 +168,23 @@ def testit(Nq=None, Nts=None,
     (My, A, rhs, nfunc, femp) = dbs.\
         burgers_spacedisc(N=Nq, nu=nu, x0=x0, xE=xE, retfemdict=True)
     # define the initial value
-    nqbytwo = np.int(np.floor(Nq/2))
-    nqmobytwo = np.int(np.floor((Nq-1)/2))
-    if inivtype == 'smooth':
-        xrng = np.linspace(0, 2*np.pi, Nq-1)
-        iniv = 0.5 - 0.5*np.sin(xrng + 0.5*np.pi)
-        iniv = 0.5*iniv.reshape((Nq-1, 1))
-    elif inivtype == 'step':
-        # iniv = np.r_[np.ones(((Nq-1)/2, 1)), np.zeros(((Nq)/2, 1))]
-        # iniv = np.r_[np.zeros((nqbytwo, 1)), np.ones((nqmobytwo, 1))]
-        iniv = np.r_[np.ones((nqbytwo, 1)), np.zeros((nqmobytwo, 1))]
-    elif inivtype == 'ramp':
-        iniv = np.r_[np.linspace(0, 1, (nqmobytwo)).reshape((nqmobytwo, 1)),
-                     np.zeros((nqbytwo, 1))]
-    elif inivtype == 'zero':
-        iniv = np.zeros((Nq-1, 1))
+    iniv = dbs.burger_onedim_inival(inivtype=inivtype, V=femp['V'],
+                                    ininds=femp['ininds'])
+    # nqbytwo = np.int(np.floor(Nq/2))
+    # nqmobytwo = np.int(np.floor((Nq-1)/2))
+    # if inivtype == 'smooth':
+    #     xrng = np.linspace(0, 2*np.pi, Nq-1)
+    #     iniv = 0.5 - 0.5*np.sin(xrng + 0.5*np.pi)
+    #     iniv = 0.5*iniv.reshape((Nq-1, 1))
+    # elif inivtype == 'step':
+    #     # iniv = np.r_[np.ones(((Nq-1)/2, 1)), np.zeros(((Nq)/2, 1))]
+    #     # iniv = np.r_[np.zeros((nqbytwo, 1)), np.ones((nqmobytwo, 1))]
+    #     iniv = np.r_[np.ones((nqmobytwo, 1)), np.zeros((nqbytwo, 1))]
+    # elif inivtype == 'ramp':
+    #     iniv = np.r_[np.linspace(0, 1, (nqmobytwo)).reshape((nqmobytwo, 1)),
+    #                  np.zeros((nqbytwo, 1))]
+    # elif inivtype == 'zero':
+    #     iniv = np.zeros((Nq-1, 1))
     # ### compute the forward snapshots
 
     def fwdrhs(t):
@@ -214,8 +201,14 @@ def testit(Nq=None, Nts=None,
         plotmat(vv, fignum=1234, tikzfile=fullmodelv_tkzf, **dmndct)
 
     (xms, Ms) = gpu.get_genmeasuremat(sol=vv.T, tmesh=tmesh, sdim=Ns)
+
+    # XXX: a little crime here
+    # Ms[0, 1] = 0
+    # Ms[1, 0] = 0
+    Ms = sps.csc_matrix(Ms)
+
     # ### compute the backward snapshots
-    if genpodadj or genpodcl:
+    if genpodadj or genpodcl or spacebasscheme == 'combined':
         _vfun = interp1d(tmesh, vv, axis=0)  # , fill_value='extrapolate')
 
         def vfun(t):
@@ -262,20 +255,48 @@ def testit(Nq=None, Nts=None,
         Lms = None
     # ### compute the projection matrices, i.e. optimal bases
     (lyitUVy, lyUVy, lsitUVs, lsUVs, lyitULy, lyULy, lsitULs,
-     lsULs) = stateadjspatibas(xms=xms, lms=Lms, Ms=Ms, My=My, nspacevecs=hq,
-                               ntimevecs=hs, spacebasscheme=spacebasscheme)
+     lsULs) = gou.stateadjspatibas(xms=xms, lms=Lms, Ms=Ms, My=My,
+                                   nspacevecs=hq, ntimevecs=hs,
+                                   spacebasscheme=spacebasscheme)
+    # (alyitUVy, alyUVy, alsitUVs, alsUVs, alyitULy, alyULy, alsitULs,
+    #  alsULs) = stateadjspatibas(xms=xms, lms=Lms, Ms=Ms, My=My,
+    #                             nspacevecs=hq, ntimevecs=hs,
+    #                             spacebasscheme=spacebasscheme)
+    # print('TODO: debug hack')
+    # lsitUVs = alsitUVs
+    # lsUVs = alsUVs
+    # lyitUVy = alyitUVy
+    # lyUVy = alyUVy
+    # import ipdb; ipdb.set_trace()
     # ### the fwd projection scheme
     AVk, MVk, nonl_red, rhs_red, liftcoef, projcoef =\
         gpu.get_spaprjredmod(M=My, A=A, nonl=nfunc, rhs=fwdrhs,
                              Uk=lyitUVy, prjUk=lyUVy)
 
     hiniv = projcoef(iniv)
+    hconstone = lsUVs.T.sum(axis=1, keepdims=True)  # the constant 1 in hat S
+    spatimIniv = np.kron(hiniv, hconstone.T)  # the space-time ini value
+    if plotplease:
+        plotmat((np.dot(lyitUVy, np.dot(spatimIniv, lsitUVs.T))).T,
+                fignum=323, **dmndct)
+        hconstonel = lsULs.T.sum(axis=1, keepdims=True)  # the 1 in hat R
+        lspatimIniv = np.kron(hiniv, hconstonel.T)  # the space-time ini value
+        plotmat((np.dot(lyitULy, np.dot(lspatimIniv, lsitULs.T))).T,
+                fignum=322, **dmndct)
 
-    Ms = sps.csc_matrix(gpu.get_ms(sdim=Ns, tmesh=tmesh))
+    spatimInivvec = gou.Xtoxvec(spatimIniv)
+    timeIniv = spatimInivvec[:hq, :]
+    # hiniv = spatimInivvec[:hq, :]
+
+    # XXX see above
+    # Ms = sps.csc_matrix(gpu.get_ms(sdim=Ns, tmesh=tmesh))
     dms = sps.csc_matrix(gpu.get_dms(sdim=Ns, tmesh=tmesh))
     Vhms = np.dot(lsitUVs.T, Ms*lsitUVs)
     Vhdms = np.dot(lsitUVs.T, dms*lsitUVs)
 
+    locdebug = debug
+    # locdebug = True
+    # print('assembling the reduced tensor... -- TODO: locdebug is True')
     print('assembling the reduced tensor...')
     datastr = 'data/fwd_iniv' + inivtype + '_tnsr_' + spacebasscheme + \
         '_target_' + target +\
@@ -283,11 +304,12 @@ def testit(Nq=None, Nts=None,
     uvvdxl, htittl = bgu.\
         get_burger_tensor(Uky=lyitUVy, Uks=lsitUVs, sdim=Ns, bwd=True,
                           Vhdms=Vhdms, Vhms=Vhms, Vhmy=MVk, Vhay=AVk,
-                          tmesh=tmesh, datastr=datastr, debug=debug, **femp)
+                          tmesh=tmesh, datastr=datastr, debug=locdebug,
+                          **femp)
 
     vres, vresprime = \
         bou.setup_burger_fwdres(Vhdms=Vhdms, Vhms=Vhms, Vhmy=MVk, Vhay=AVk,
-                                htittl=htittl, uvvdxl=uvvdxl, hiniv=hiniv)
+                                htittl=htittl, uvvdxl=uvvdxl, hiniv=timeIniv)
 
     def ndvresprime(tvvec):
         ndjaco = nd.Jacobian(vres)(tvvec)
@@ -310,7 +332,7 @@ def testit(Nq=None, Nts=None,
         Luvvdxl, Lhtittl = bgu.\
             get_burger_tensor(Uky=lyitULy, bwd=True, Uks=lsitULs,
                               Ukyconv=lyitUVy, Uksconv=lsitUVs, sdim=Ns,
-                              tmesh=tmesh, datastr=datastr, debug=debug,
+                              tmesh=tmesh, datastr=datastr, debug=locdebug,
                               **femp)
 
         tgtst = gou.xvectoX(gou.functovec(vstar, snapshottmesh),
@@ -328,7 +350,7 @@ def testit(Nq=None, Nts=None,
             setup_burger_bwdres(Lhdms=Lhdms, Lhms=Lhms, Lhmy=Lhmy, Lhay=Lhay,
                                 LVhms=LVhms, LVhmy=LVhmy,
                                 Lhtittl=Lhtittl, Luvvdxl=Luvvdxl,
-                                hiniv=hiniv, htermiL=htermiL,
+                                hiniv=timeIniv, htermiL=htermiL,
                                 tsVvec=hcurstvec[hq:, :], tsVtrgtvec=htgstvec)
         # ### the optimal cont problem
         VLhms = np.dot(lsitUVs.T, Ms*lsitULs)
@@ -341,15 +363,18 @@ def testit(Nq=None, Nts=None,
                                Lhdms=Lhdms, Lhms=Lhms, Lhmy=Lhmy, Lhay=Lhay,
                                LVhms=LVhms, LVhmy=LVhmy,
                                Lhtittl=Lhtittl, Luvvdxl=Luvvdxl,
-                               hiniv=hiniv, htermiL=htermiL)
+                               hiniv=timeIniv, htermiL=htermiL)
     # ### the tests
     # # forward problem
     if genpodstate:
-        optiniV = np.tile(hiniv.T, hs-1).T
+        optiniV = np.tile(timeIniv.T, hs-1).T
+        # optiniV = spatimInivvec[hq:, :]
         print('solving the optimization problem (state)...')
-        sol = spacetimesolve(func=vres, funcjaco=vresprime, inival=optiniV,
-                             message='fwd problem - analytical jacobian')
-        optiV = np.r_[hiniv.flatten(), sol]
+        sol = gou.spacetimesolve(func=vres, funcjaco=vresprime,
+                                 # inival=optiniV,
+                                 inival=0*spatimInivvec[hq:],
+                                 message='fwd problem - analytical jacobian')
+        optiV = np.r_[timeIniv.flatten(), sol]
         optiV = optiV.reshape((hs, hq))
         if plotplease:
             plotmat((np.dot(lyitUVy, np.dot(optiV.T, lsitUVs.T))).T,
@@ -358,8 +383,8 @@ def testit(Nq=None, Nts=None,
     if genpodadj:
         optiniL = np.zeros((hq*(hs-1), 1))
         print('solving the optimization problem (adjoint)...')
-        sol = spacetimesolve(func=lres, funcjaco=lresprime, inival=optiniL,
-                             message='bwd problem - analytical jacobian')
+        sol = gou.spacetimesolve(func=lres, funcjaco=lresprime, inival=optiniL,
+                                 message='bwd problem - analytical jacobian')
         optiL = np.r_[sol, htermiL.flatten()]
         optiL = optiL.reshape((hs, hq))
         if plotplease:
@@ -368,7 +393,7 @@ def testit(Nq=None, Nts=None,
 
     if genpodcl:
         print('solving the optimization problem (fwdbwd)...')
-        fwdbwdini = True
+        fwdbwdini = False
         if fwdbwdini:
             hcurst = np.dot(lyUVy.T, np.dot(xms, lsitUVs))
             hcurstvec = gou.Xtoxvec(hcurst)
@@ -382,20 +407,22 @@ def testit(Nq=None, Nts=None,
             #                 np.dot(gou.xvectoX(hcuradjvec, nq=hq, ns=hs),
             #                        lsitULs.T))).T, fignum=9998)
             optiniV = hcurstvec[hq:, :]
-            optiniV = hcuradjvec[:-hq, :]
+            optiniL = hcuradjvec[:-hq, :]
 
         else:
-            optiniV = np.tile(hiniv.T, hs-1).T
+            # optiniV = np.zeros((hq*(hs-1), 1))
+            optiniV = spatimInivvec[hq:].reshape((hq*(hs-1), 1))
             optiniL = np.zeros((hq*(hs-1), 1))
         optiniVL = np.vstack([optiniV, optiniL])
         sol, timingsdict = \
-            spacetimesolve(func=clres, funcjaco=clresprime, inival=optiniVL,
-                           message='optcont problem - analytical jacobian',
-                           timerecord=True)
+            gou.spacetimesolve(func=clres, funcjaco=clresprime,
+                               inival=optiniVL,
+                               message='optcont problem - analytical jacobian',
+                               timerecord=True)
         if onlytimings:
             return timingsdict
 
-        optiV = np.r_[hiniv.flatten(), sol[:hq*(hs-1)]]
+        optiV = np.r_[timeIniv.flatten(), sol[:hq*(hs-1)]]
         optiV = optiV.reshape((hs, hq))
 
         optiL = np.r_[sol[-hq*(hs-1):], htermiL.flatten()]
@@ -451,8 +478,8 @@ def testit(Nq=None, Nts=None,
 if __name__ == '__main__':
     # ### define the problem
     testitdict = \
-        dict(Nq=220,  # dimension of the spatial discretization
-             Nts=250,  # number of time sampling points
+        dict(Nq=500,  # dimension of the spatial discretization
+             Nts=120,  # number of time sampling points
              # t0=0., tE=1.,
              # x0=0., xE=1.,
              # inivtype='step',  # 'step',  # 'ramp', 'smooth'
@@ -462,9 +489,14 @@ if __name__ == '__main__':
              hq=12,  # number of space modes
              hs=12,  # number of time modes
              target='inival',  # 'inival', 'heart'
+             # target='heart',  # 'inival', 'heart'
+             genpodstate=True,
+             genpodcl=True,
+             # genpodadj=True,
+             # spacebasscheme='VandL',
+             spacebasscheme='combined',
+             # spacebasscheme='onlyV',
              # spacebasschemes: 'onlyV', 'onlyL', 'VandL', 'combined'
-             # genpodstate=True, spacebasscheme='onlyV',
-             genpodcl=True, genpodadj=True, spacebasscheme='combined',
              plotplease=True, tikzplease=False,
              nu=5e-3, alpha=1e-3)
 

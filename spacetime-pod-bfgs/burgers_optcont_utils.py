@@ -48,9 +48,9 @@ def burger_vres(tsVvec=None, tsLvec=None,
             return spu.eva_quadform(tsvecone=tvvec, tsvectwo=tvvec,
                                     htittl=htittl, uvvdxl=uvvdxl)
 
-        res = spu.get_spacetimepodres(tvvec=tsVvec, dms=Vhdms, ms=Vhms,
-                                      my=Vhmy, ared=Vhay, nfunc=fwdnonl,
-                                      rhs=fwdrhs, iniv=hiniv, retnorm=False)
+        res = spu.spacetimepodres(tvvec=tsVvec, dms=Vhdms, ms=Vhms,
+                                  my=Vhmy, ared=Vhay, nfunc=fwdnonl,
+                                  rhs=fwdrhs, iniv=hiniv, retnorm=False)
         return res
 
 
@@ -101,9 +101,9 @@ def burger_lres(tsVvec=None, tsLvec=None, tsVtrgtvec=None,
             def bwdnonl(tvvec=None):
                 return spu.eva_quadform(tsvectwo=tvvec, tsvecone=-inivtsVvec,
                                         htittl=Lhtittl, uvvdxl=Luvvdxl)
-        res = spu.get_spacetimepodres(tvvec=tsLvec, dms=-Lhdms, ms=Lhms,
-                                      my=Lhmy, ared=Lhay, nfunc=bwdnonl,
-                                      rhs=adjrhs, termiv=htermiL)
+        res = spu.spacetimepodres(tvvec=tsLvec, dms=-Lhdms, ms=Lhms,
+                                  my=Lhmy, ared=Lhay, nfunc=bwdnonl,
+                                  rhs=adjrhs, termiv=htermiL)
         return res
 
 

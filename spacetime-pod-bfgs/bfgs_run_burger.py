@@ -4,9 +4,10 @@ from scipy.interpolate import interp1d
 from scipy.optimize import fmin_bfgs
 
 import dolfin_navier_scipy.data_output_utils as dou
+import spacetime_galerkin_pod.gen_pod_utils as gpu
 
 import dolfin_burgers_scipy as dbs
-import gen_pod_utils as gpu
+import spacetime_galerkin_pod.gen_pod_utils as gpu
 import genpod_opti_utils as gou
 
 from plot_utils import plotmat
@@ -58,7 +59,7 @@ def bfgs_opti(Nq=None, Nts=None,
 
     (My, A, rhs, nfunc, femp) = dbs.\
         burgers_spacedisc(N=Nq, nu=nu, x0=x0, xE=xE, retfemdict=True)
-    iniv = dbs.burger_onedim_inival(Nq=Nq, inivtype=inivtype)
+    iniv = dbs.burger_onedim_inival(Nq=Nq, inivtype=inivtype, **femp)
 
     # ### compute the forward snapshots
     def fwdrhs(t):
@@ -158,13 +159,13 @@ def bfgs_opti(Nq=None, Nts=None,
     redvstarvec = gou.functovec(vstar, redtmesh, projcoef=projVcoef)
     vstarvec = gou.functovec(vstar, tmesh)
 
-    eva_redfwd = gou.get_eva_fwd(iniv=hiniv, MV=MVk, AV=AVk, MVU=VLhmy,
+    eva_redfwd = gou.get_eva_fwd(iniv=hiniv, MV=MVk, AV=AVk, B=VLhmy,
                                  rhs=rhs_red, nonlfunc=redfwdnln_tns,
                                  # nonlfunc=nonl_red,
                                  solvrtol=redrtol, solvatol=redatol,
                                  tmesh=redtmesh)
 
-    eva_redbwd = gou.get_eva_bwd(vstarvec=redvstarvec, MLV=LVhmy, ML=MLk,
+    eva_redbwd = gou.get_eva_bwd(vstarvec=redvstarvec, vmat=LVhmy, ML=MLk,
                                  AL=ALk, termiL=htermiL, tmesh=redtmesh,
                                  bwdvltens=Luvvdxl,
                                  solvrtol=redrtol, solvatol=redatol,
@@ -173,23 +174,24 @@ def bfgs_opti(Nq=None, Nts=None,
         rdvvec = eva_redfwd(np.zeros((hq, hs)))
         return eva_redbwd, rdvvec
 
-    eva_liftufwd = gou.get_eva_fwd(iniv=iniv, MV=My, AV=A, MVU=My,
+    eva_liftufwd = gou.get_eva_fwd(iniv=iniv, MV=My, AV=A, B=My,
                                    rhs=fwdrhs, nonlfunc=nfunc,
-                                   tmesh=tmesh, redtmesh=redtmesh,
+                                   tmesh=tmesh, utmesh=redtmesh,
                                    liftUcoef=liftLcoef)
 
     eva_redcostfun, eva_redcostgrad = \
-        gou.get_eva_costfun(tmesh=redtmesh, MVs=MVk, MUs=alpha*MLk,
+        gou.get_eva_costfun(tmesh=redtmesh, vmat=MVk, rmat=alpha*MLk,
+                            bmat=MLk,
                             vstarvec=redvstarvec, getcompgrad=True,
                             eva_fwd=eva_redfwd, eva_bwd=eva_redbwd)
 
     eva_liftucostfun = \
-        gou.get_eva_costfun(tmesh=tmesh, MVs=My,
-                            utmesh=redtmesh, MUs=alpha*MLk,
+        gou.get_eva_costfun(tmesh=tmesh, vmat=My,
+                            utmesh=redtmesh, rmat=alpha*MLk, bmat=MLk,
                             vstarvec=vstarvec, eva_fwd=eva_liftufwd)
 
-    checktest = True
     checktest = False
+    checktest = True
     if checktest:
         dmndct.update(dict(plotplease=True))
         rdvvec = eva_redfwd(np.zeros((hq, hs)))
@@ -202,14 +204,14 @@ def bfgs_opti(Nq=None, Nts=None,
 
         plotmat(np.dot(lyitUVy, gou.xvectoX(redvstarvec, ns=hs, nq=hq)).T,
                 fignum=324, **dmndct)
-        checktestjaco = True
         checktestjaco = False
+        checktestjaco = True
         if checktestjaco:
             import numdifftools as nd
             uk = gou.Xtoxvec(np.zeros((hq, hs)))
             myjaco = eva_redcostgrad(gou.Xtoxvec(uk).flatten())
             ndjaco = nd.Jacobian(eva_redcostfun)(gou.Xtoxvec(uk).flatten())
-            print('diffnorm of the analytical and the numerical jacobian' +\
+            print('diffnorm of the analytical and the numerical jacobian' +
                   ' `dJ={0}`'.format(np.linalg.norm(myjaco-ndjaco)))
 
     uk = gou.Xtoxvec(np.zeros((hq, hs)))

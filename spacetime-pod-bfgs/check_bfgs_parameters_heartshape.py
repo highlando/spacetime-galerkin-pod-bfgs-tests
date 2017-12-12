@@ -26,7 +26,7 @@ checkits = False
 # checktols = True
 checktols = False
 
-baseits = 200  # 0  # it will terminate on its own
+baseits = 100  # 0  # it will terminate on its own
 basegtol = 2.5e-4
 basetol = 1e-4
 basenu = 5e-3
@@ -111,6 +111,7 @@ if checkits:
 
 if checkgtol:
     gtollist = [basegtol*2**(.5*x) for x in range(-1, 5)]
+    gtollist = [basegtol*2**(.5*x) for x in range(-1, 0)]
 
     if checkbase:
         def updatetestdict(testdict, cgtol):

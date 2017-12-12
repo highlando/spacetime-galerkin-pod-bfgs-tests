@@ -7,7 +7,7 @@ import warnings
 import dolfin_navier_scipy.data_output_utils as dou
 import sadptprj_riclyap_adi.lin_alg_utils as lau
 
-import gen_pod_utils as gpu
+import spacetime_galerkin_pod.gen_pod_utils as gpu
 import dolfin_burgers_scipy as dbs
 
 __all__ = ['get_podredmod_burger',
@@ -70,7 +70,7 @@ def get_burger_tensor(Uky=None, Uks=None, datastr=None, V=None, diribc=None,
     # loading/assembling the components of the tensor
     try:
         if datastr is None or debug:
-            print("no datastr specified or `debug` -- won't load/save any data")
+            print("no datastr specified or `debug` - won't load/save any data")
             raise IOError
         else:
             fjs = open(datastr)
@@ -80,8 +80,8 @@ def get_burger_tensor(Uky=None, Uks=None, datastr=None, V=None, diribc=None,
             if spaceonly:
                 return uvvdxl, None
             htittl = nonlty_listtoarray(burgernonldict['htittl'])
-            print('Loaded the coefficients for the nonlinearity from {0}'.\
-                format(datastr))
+            print('Loaded the coefficients for the nonlinearity from {0}'.
+                  format(datastr))
     except IOError:
         with dou.Timer('assemble the nonlinear coefficients'):
             print('... in space')
@@ -105,8 +105,8 @@ def get_burger_tensor(Uky=None, Uks=None, datastr=None, V=None, diribc=None,
             f = open(datastr, 'w')
             f.write(json.dumps(burgernonldict))
             f.close()
-            print('Saved the coefficients for the nonlinearity to {0}'.\
-                format(datastr))
+            print('Saved the coefficients for the nonlinearity to {0}'.
+                  format(datastr))
     return uvvdxl, htittl
 
 
